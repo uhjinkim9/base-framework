@@ -6,8 +6,6 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {Between, DataSource, In, Repository} from "typeorm";
 import {plainToInstance} from "class-transformer";
 
-import {fetchPublicHolidays} from "src/common/util/axios";
-import {isEmpty, return404ErrorIfEmpty} from "src/common/util/check-empty";
 import {Result} from "src/common/util/result";
 import {isValidPlanType, relationMap} from "../etc/plan-helper";
 import {PlanTypes} from "../etc/plan.enum";
@@ -17,7 +15,6 @@ import {PlanReqDto} from "../dto/req-dto/plan.req-dto";
 import {RepeatRuleReqDto} from "../dto/req-dto/repeat-rule.req-dto";
 import {ScheduleReqDto} from "../dto/req-dto/schedule.req-dto";
 import {TaskReqDto} from "../dto/req-dto/task.req-dto";
-import {PlanMenuEntity} from "../../plan-menu/entity/plan-menu.entity";
 import {DayoffEntity} from "../entity/dayoff.entity";
 import {PlanEntity} from "../entity/plan.entity";
 import {RepeatRuleEntity} from "../entity/repeat-rule.entity";
@@ -28,8 +25,6 @@ import {PlanResDto} from "../dto/res-dto/plan.res-dto";
 @Injectable()
 export class PlanService {
   constructor(
-    @InjectRepository(PlanMenuEntity)
-    private readonly calRepo: Repository<PlanMenuEntity>,
     @InjectRepository(PlanEntity)
     private readonly planRepo: Repository<PlanEntity>,
     @InjectRepository(RepeatRuleEntity)
@@ -81,17 +76,14 @@ export class PlanService {
           planType: true,
         },
       });
-      return404ErrorIfEmpty(plan, "일정을 찾을 수 없음");
 
       const planType = plan.planType;
       const relations = relationMap[planType];
-      return404ErrorIfEmpty(relations, "해당 타입은 존재하지 않음");
 
       const result = await this.planRepo.findOne({
         where: {planIdx},
         relations,
       });
-      return404ErrorIfEmpty(result, "일정을 찾을 수 없음");
 
       const res = plainToInstance(PlanResDto, result);
       await qr.commitTransaction();
@@ -120,11 +112,6 @@ export class PlanService {
       const planEntity = plainToInstance(PlanEntity, planDto);
       const plan = await qr.manager.save(planEntity);
       const {menuIdx, planIdx} = plan;
-
-      // 2. Calendar 조회
-      const calendar = await qr.manager.findOne(this.calRepo.target, {
-        where: {menuIdx},
-      });
 
       // 3. 타입별 데이터 저장
       let typeSpecificResult;
@@ -175,7 +162,6 @@ export class PlanService {
       // 5. 결과 병합
       const merged = {
         ...plan,
-        calendar,
         [typeSpecificKey]: typeSpecificResult,
         repeatRule: rrule,
       };
@@ -275,17 +261,9 @@ export class PlanService {
           planType: true,
         },
       });
-      return404ErrorIfEmpty(plan, "일정을 찾을 수 없음");
 
       const planType = plan.planType;
-      const relations = deleteMap[planType];
-      const isValid = isValidPlanType(plan.planType);
-
-      if (!isEmpty(relations) || !isValid)
-        return Result.error(HttpStatus.NOT_FOUND, "유효하지 않은 planType");
-
       const deleteConfig = deleteMap[planType];
-      return404ErrorIfEmpty(planType, `지원하지 않는 planType: ${planType}`);
 
       // 2. 타입별 엔티티 조회 및 삭제
       const typeSpecificEntity = await qr.manager.findOne(
@@ -293,10 +271,6 @@ export class PlanService {
         {
           where: {planIdx},
         },
-      );
-      return404ErrorIfEmpty(
-        typeSpecificEntity,
-        `${deleteConfig.entityName}을 찾을 수 없음`,
       );
 
       // 3. 관련 데이터 삭제 (순서 중요: 외래키 제약 조건)
@@ -322,25 +296,23 @@ export class PlanService {
    * CORS 문제를 해결하기 위해 서버에서 공공데이터포털 API를 호출
    */
   async getPublicHolidays(year: number, month: number): Promise<Result<any>> {
-    try {
-      const holidayData = await fetchPublicHolidays(year, month);
-
-      return Result.success(
-        holidayData,
-        "공휴일 정보를 성공적으로 조회했습니다.",
-      );
-    } catch (error) {
-      console.error(
-        "[PlanService.getPublicHolidays] 공휴일 데이터 조회 실패:",
-        {
-          message: error instanceof Error ? error.message : String(error),
-        },
-      );
-
-      return Result.error(
-        HttpStatus.INTERNAL_SERVER_ERROR,
-        `공휴일 정보 조회 실패: ${error instanceof Error ? error.message : String(error)}`,
-      );
-    }
+    //   try {
+    //     const holidayData = await fetchPublicHolidays(year, month);
+    //     return Result.success(
+    //       holidayData,
+    //       "공휴일 정보를 성공적으로 조회했습니다.",
+    //     );
+    //   } catch (error) {
+    //     console.error(
+    //       "[PlanService.getPublicHolidays] 공휴일 데이터 조회 실패:",
+    //       {
+    //         message: error instanceof Error ? error.message : String(error),
+    //       },
+    //     );
+    return Result.error(
+      HttpStatus.INTERNAL_SERVER_ERROR,
+      `공휴일 정보 조회 실패`,
+    );
+    //   }
   }
 }

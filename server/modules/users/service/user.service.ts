@@ -14,13 +14,13 @@ import {Result} from "src/common/util/result";
 import {UserReqDto} from "../dto/req/user.req-dto";
 import {UserResDto} from "../dto/res/user.res-dto";
 import {UserEntity} from "../entity/user.entity";
-import {Tokens} from "src/module/jwt/types/tokens.type";
 import {LoginInfoReqDto} from "../dto/req/login-info.req-dto";
-import {NotificationEventPayload} from "src/module/messaging/type/notification-payload.type";
-import {RabbitmqPublisherService} from "src/module/messaging/rabbitmq-publisher.service";
-import {JWTService} from "src/module/jwt/service/jwt.service";
 
 import password from "src/helpers/password";
+import {JWTService} from "src/modules/jwt/service/jwt.service";
+import {RabbitmqPublisherService} from "src/modules/messaging/rabbitmq-publisher.service";
+import {Tokens} from "src/modules/jwt/types/tokens.type";
+import {NotificationEventPayload} from "src/modules/messaging/type/notification-payload.type";
 
 @Injectable()
 export class UserService {

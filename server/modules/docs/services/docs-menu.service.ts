@@ -1,14 +1,13 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { DataSource, Repository } from 'typeorm';
+import {HttpStatus, Injectable} from "@nestjs/common";
+import {InjectRepository} from "@nestjs/typeorm";
+import {DataSource, Repository} from "typeorm";
 
-import { Result } from 'src/common/util/result';
-import { partialDto } from 'src/common/util/partial-dto';
-import { return404ErrorIfEmpty } from 'src/common/util/check-empty';
+import {Result} from "src/common/util/result";
+import {partialDto} from "src/common/util/partial-dto";
 
-import { DocsMenuEntity } from '../entities/docs-menu.entity';
-import { DocsMenuReqDto } from '../dto/req/docs-menu.req-dto';
-import { DocsMenuResDto } from '../dto/res/docs-menu.res-dto';
+import {DocsMenuEntity} from "../entities/docs-menu.entity";
+import {DocsMenuReqDto} from "../dto/req/docs-menu.req-dto";
+import {DocsMenuResDto} from "../dto/res/docs-menu.res-dto";
 
 @Injectable()
 export class DocsMenuService {
@@ -24,33 +23,32 @@ export class DocsMenuService {
 
     // QueryBuilder를 사용하여 모든 레벨의 children에 isUsed 조건 적용
     let query = this.amRepo
-      .createQueryBuilder('dm')
-      .leftJoinAndSelect('dm.children', 'children', 'children.isUsed = 1')
+      .createQueryBuilder("dm")
+      .leftJoinAndSelect("dm.children", "children", "children.isUsed = 1")
       .leftJoinAndSelect(
-        'children.children',
-        'grandchildren',
-        'grandchildren.isUsed = 1',
+        "children.children",
+        "grandchildren",
+        "grandchildren.isUsed = 1",
       )
       .leftJoinAndSelect(
-        'grandchildren.children',
-        'greatgrandchildren',
-        'greatgrandchildren.isUsed = 1',
+        "grandchildren.children",
+        "greatgrandchildren",
+        "greatgrandchildren.isUsed = 1",
       )
-      .where('dm.isUsed = 1')
-      .orderBy('dm.seqNum', 'ASC')
-      .addOrderBy('children.seqNum', 'ASC')
-      .addOrderBy('grandchildren.seqNum', 'ASC')
-      .addOrderBy('greatgrandchildren.seqNum', 'ASC');
+      .where("dm.isUsed = 1")
+      .orderBy("dm.seqNum", "ASC")
+      .addOrderBy("children.seqNum", "ASC")
+      .addOrderBy("grandchildren.seqNum", "ASC")
+      .addOrderBy("greatgrandchildren.seqNum", "ASC");
 
     // partial 조건들 추가
     Object.keys(partial).forEach((key) => {
       if (partial[key] !== undefined) {
-        query = query.andWhere(`dm.${key} = :${key}`, { [key]: partial[key] });
+        query = query.andWhere(`dm.${key} = :${key}`, {[key]: partial[key]});
       }
     });
 
     const menus = await query.getMany();
-    return404ErrorIfEmpty(menus, 'Docs 사이드바 메뉴 조회 실패');
 
     // 수동으로 DTO 변환 (명확하고 안전함)
     const convertedMenus = this.convertToResponseDto(menus);

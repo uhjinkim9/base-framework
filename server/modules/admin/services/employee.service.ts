@@ -17,7 +17,6 @@ import {EmployeeResDto} from "../dto/res/employee.res-dto";
 import {PaginationReqDto} from "../dto/req/pagination.req-dto";
 import {PaginationResDto} from "../dto/res/pagination.res-dto";
 import {PaginationHelper} from "src/helpers/pagination.helper";
-import {addSearchCondition} from "src/helpers/contact-helper";
 
 @Injectable()
 export class EmployeeService {
@@ -52,13 +51,6 @@ export class EmployeeService {
       .createQueryBuilder("emp")
       .where("1=1")
       .orderBy("emp.workPeriod", "DESC");
-
-    if (searchKeyword?.trim()) {
-      addSearchCondition(empQuery, searchKeyword, searchCategory);
-    }
-    if (searchKeyword?.trim()) {
-      addSearchCondition(empCountQuery, searchKeyword, searchCategory);
-    }
 
     [results, total] = await PaginationHelper.executeParallel(
       empQuery,

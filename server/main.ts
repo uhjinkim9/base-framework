@@ -1,13 +1,13 @@
-import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
-import { AppModule } from './app.module';
+import {NestFactory} from "@nestjs/core";
+import {ValidationPipe} from "@nestjs/common";
+import {AppModule} from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // CORS 설정
   app.enableCors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5000',
+    origin: process.env.CLIENT_URL,
     credentials: true,
   });
 
@@ -30,7 +30,7 @@ async function bootstrap() {
   const port = process.env.PORT || 8000;
   await app.listen(port);
 
-  console.log(`🚀 Monolithic Application is running on: http://localhost:${port}`);
+  console.log(`${port}에서 서버가 실행 중입니다... `);
 }
 
 bootstrap();

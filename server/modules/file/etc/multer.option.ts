@@ -5,25 +5,25 @@
  * NestJS에서	FileInterceptor, FilesInterceptor로 간편하게 사용 가능
  */
 
-import { HttpException, HttpStatus } from '@nestjs/common';
-import { diskStorage, memoryStorage } from 'multer';
-import * as fs from 'fs';
-import * as path from 'path';
-import { generateUUID } from 'src/common/util/random-generator';
+import {HttpException, HttpStatus} from "@nestjs/common";
+import {diskStorage, memoryStorage} from "multer";
+import * as fs from "fs";
+import * as path from "path";
+import {generateUUID} from "src/common/util/uuid";
 
 // 동적 multer 옵션 생성 함수
-export const createMulterDiskOptions = (moduleNm: string = 'default') => ({
+export const createMulterDiskOptions = (moduleNm: string = "default") => ({
   storage: diskStorage({
     destination: (req, file, callback) => {
       // uploads/{moduleNm}/ 폴더 구조 생성
-      const uploadPath = path.join(process.cwd(), 'uploads', moduleNm);
-      console.log('📦 multer 저장 경로:', uploadPath);
-      console.log('📂 moduleNm:', moduleNm);
+      const uploadPath = path.join(process.cwd(), "uploads", moduleNm);
+      console.log("📦 multer 저장 경로:", uploadPath);
+      console.log("📂 moduleNm:", moduleNm);
 
       // 폴더가 없으면 재귀적으로 생성
       if (!fs.existsSync(uploadPath)) {
-        fs.mkdirSync(uploadPath, { recursive: true });
-        console.log('📁 폴더 생성됨:', uploadPath);
+        fs.mkdirSync(uploadPath, {recursive: true});
+        console.log("📁 폴더 생성됨:", uploadPath);
       }
 
       callback(null, uploadPath);
@@ -31,24 +31,24 @@ export const createMulterDiskOptions = (moduleNm: string = 'default') => ({
     filename: (req, file, callback) => {
       try {
         if (!file?.originalname) {
-          console.error('파일 이름 없음');
-          return callback(new Error('파일 이름이 없습니다.'), '');
+          console.error("파일 이름 없음");
+          return callback(new Error("파일 이름이 없습니다."), "");
         }
 
-        const decodedName = Buffer.from(file.originalname, 'latin1').toString(
-          'utf8',
+        const decodedName = Buffer.from(file.originalname, "latin1").toString(
+          "utf8",
         );
         const ext = path.extname(decodedName);
         const base = path.basename(decodedName, ext);
-        const safeBase = base.replace(/\s+/g, '-').replace(/[^\w\-가-힣]/g, '');
+        const safeBase = base.replace(/\s+/g, "-").replace(/[^\w\-가-힣]/g, "");
 
         const uniqueSuffix = `${generateUUID()}`;
 
         const safeFileName = `${safeBase}-${uniqueSuffix}${ext}`;
         callback(null, safeFileName);
       } catch (err) {
-        console.error('파일 이름 생성 오류:', err);
-        return callback(err, '');
+        console.error("파일 이름 생성 오류:", err);
+        return callback(err, "");
       }
     },
   }),
@@ -58,19 +58,19 @@ export const multerDiskOptions = {
   storage: diskStorage({
     destination: (req, file, callback) => {
       // req.body에서 moduleNm 추출 (기본값: 'default')
-      console.log('🔍 req.body:', req.body); // 디버깅용
-      console.log('🔍 req.body.moduleNm:', req.body?.moduleNm); // 디버깅용
+      console.log("🔍 req.body:", req.body); // 디버깅용
+      console.log("🔍 req.body.moduleNm:", req.body?.moduleNm); // 디버깅용
 
-      const moduleNm = req.body?.moduleNm || 'default';
+      const moduleNm = req.body?.moduleNm || "default";
 
       // uploads/{moduleNm}/ 폴더 구조 생성
-      const uploadPath = path.join(process.cwd(), 'uploads', moduleNm);
-      console.log('📦 multer 저장 경로:', uploadPath);
+      const uploadPath = path.join(process.cwd(), "uploads", moduleNm);
+      console.log("📦 multer 저장 경로:", uploadPath);
 
       // 폴더가 없으면 재귀적으로 생성
       if (!fs.existsSync(uploadPath)) {
-        fs.mkdirSync(uploadPath, { recursive: true });
-        console.log('📁 폴더 생성됨:', uploadPath);
+        fs.mkdirSync(uploadPath, {recursive: true});
+        console.log("📁 폴더 생성됨:", uploadPath);
       }
 
       callback(null, uploadPath);
@@ -78,16 +78,16 @@ export const multerDiskOptions = {
     filename: (req, file, callback) => {
       try {
         if (!file?.originalname) {
-          console.error('파일 이름 없음');
-          return callback(new Error('파일 이름이 없습니다.'), '');
+          console.error("파일 이름 없음");
+          return callback(new Error("파일 이름이 없습니다."), "");
         }
 
-        const decodedName = Buffer.from(file.originalname, 'latin1').toString(
-          'utf8',
+        const decodedName = Buffer.from(file.originalname, "latin1").toString(
+          "utf8",
         );
         const ext = path.extname(decodedName);
         const base = path.basename(decodedName, ext);
-        const safeBase = base.replace(/\s+/g, '-').replace(/[^\w\-가-힣]/g, '');
+        const safeBase = base.replace(/\s+/g, "-").replace(/[^\w\-가-힣]/g, "");
 
         const uniqueSuffix = `${generateUUID()}`;
 
@@ -95,8 +95,8 @@ export const multerDiskOptions = {
         // const safeFileName = encodeURI(`${safeBase}-${uniqueSuffix}${ext}`);
         callback(null, safeFileName);
       } catch (err) {
-        console.error('파일 이름 생성 오류:', err);
-        return callback(err, '');
+        console.error("파일 이름 생성 오류:", err);
+        return callback(err, "");
       }
     },
   }),

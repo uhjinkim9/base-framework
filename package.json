@@ -8,38 +8,22 @@
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "start-client": "cd client && npm run dev",
+    "start-client": "cd client; npm run dev",
     "start-client:stage": "cd client && npm run start:stage",
-    "start-auth": "cd server/auth && rimraf dist && cross-env NODE_ENV=development nest start --watch",
-    "start-auth:stage": "cd server/auth && npm run build && cross-env NODE_ENV=stage npm run start:prod",
-    "start-menu": "cd server/menu && rimraf dist && cross-env NODE_ENV=development nest start --watch",
-    "start-menu:stage": "cd server/menu && npm run build && cross-env NODE_ENV=stage npm run start:prod",
-    "start-plan": "cd server/plan && rimraf dist && cross-env NODE_ENV=development nest start --watch",
-    "start-plan:stage": "cd server/plan && npm run build && cross-env NODE_ENV=stage npm run start:prod",
-    "start-docs": "cd server/docs && rimraf dist && cross-env NODE_ENV=development nest start --watch",
-    "start-docs:stage": "cd server/docs && npm run build && cross-env NODE_ENV=stage npm run start:prod",
-    "start-file": "cd server/file && rimraf dist && cross-env NODE_ENV=development nest start --watch",
-    "start-file:stage": "cd server/file && npm run build && cross-env NODE_ENV=stage npm run start:prod",
-    "start-notification": "cd server/notification && rimraf dist && cross-env NODE_ENV=development nest start --watch",
-    "start-notification:stage": "cd server/notification && npm run build && cross-env NODE_ENV=stage npm run start:prod",
+    "start-server": "cd server; rimraf dist; cross-env NODE_ENV=development npx nest start --watch",
+    "start-server:stage": "cd server && npm run build && cross-env NODE_ENV=stage npm run start:prod",
     "install-all": "concurrently \"cd client && npm install\" \"cd server/auth && npm install\" \"cd server/menu && npm install\" \"cd server/plan && npm install\" \"cd server/docs && npm install\" \"cd server/file && npm install\" \"cd server/notification && npm install\"",
-    "start": "concurrently --raw \"npm run start-client\" \"npm run start-auth\" \"npm run start-menu\" \"npm run start-plan\" \"npm run start-file\" \"npm run start-notification\"",
-    "start:stage": "cross-env NODE_ENV=stage concurrently --raw -n CLIENT,AUTH,MENU,PLAN,DOCS,FILE,NOTIFICATION -c cyan,green,blue,yellow,magenta,red,white,gray,brightBlue,brightGreen,brightYellow,brightRed,brightMagenta \"npm run start-client:stage\" \"npm run start-gateway:stage\" \"npm run start-auth:stage\" \"npm run start-menu:stage\" \"npm run start-plan:stage\" \"npm run start-docs:stage\" \"npm run start-file:stage\" \"npm run start-notification:stage\"",
+    "start": "concurrently --raw \"npm run start-client\" \"npm run start-server\"",
+    "start:stage": "cross-env NODE_ENV=stage concurrently --raw -n CLIENT,SERVER -c cyan,green \"npm run start-client:stage\" \"npm run start-server:stage\"",
     "kill-node-ps": "taskkill /F /IM node.exe"
   },
   "dependencies": {
     "@nestjs/config": "^4.0.2",
     "@nestjs/mapped-types": "^2.1.0",
     "@nestjs/platform-express": "^11.1.6",
-    "@nestjs/typeorm": "^11.0.0",
-    "@tiptap/extension-image": "^2.11.7",
-    "aws-sdk": "^2.1692.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "fast-xml-parser": "^5.2.3",
-    "http-proxy-middleware": "^3.0.5",
-    "jsonwebtoken": "^9.0.2",
-    "react-resizable": "^3.0.5",
-    "typeorm": "^0.3.26"
+    "http-proxy-middleware": "^3.0.5"
   }
 }

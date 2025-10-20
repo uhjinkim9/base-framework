@@ -12,7 +12,6 @@ import {PlanTypes, PlanVisibilityTypes} from "../etc/plan.enum";
 import {DayoffEntity} from "./dayoff.entity";
 import {ScheduleEntity} from "./schedule.entity";
 import {TaskEntity} from "./task.entity";
-import {PlanMenuEntity} from "../../plan-menu/entity/plan-menu.entity";
 import {RepeatRuleEntity} from "./repeat-rule.entity";
 
 @Entity("plans")
@@ -85,13 +84,6 @@ export class PlanEntity {
   task: TaskEntity;
 
   // 자원 예약도 있어야 함
-
-  @ManyToOne(() => PlanMenuEntity, {
-    createForeignKeyConstraints: false,
-    onDelete: "CASCADE",
-  })
-  @JoinColumn({name: "menu_idx", referencedColumnName: "menuIdx"})
-  planMenu: PlanMenuEntity;
 
   @OneToOne(() => RepeatRuleEntity, {
     createForeignKeyConstraints: false,

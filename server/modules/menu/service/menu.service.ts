@@ -12,7 +12,7 @@ import {
   MenuTreeReqDto,
 } from "../dto/req-dto/menu-tree.req-dto";
 import {MenuTreeResDto} from "../dto/res-dto/menu-tree.res.dto";
-import {generateNanoId} from "src/common/util/random-generator";
+import {generateNanoId} from "src/common/util/uuid";
 
 @Injectable()
 export class MenuService {

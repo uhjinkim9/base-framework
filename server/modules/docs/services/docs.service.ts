@@ -14,7 +14,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
-import {isEmpty, return404ErrorIfEmpty} from "src/common/util/check-empty";
+import {isEmpty} from "src/common/util/check-empty";
 import {Result} from "src/common/util/result";
 
 import {DocReqDto} from "../dto/req/doc.req-dto";
@@ -24,7 +24,6 @@ import {DocResDto} from "../dto/res/doc.res-dto";
 import {DocStatusEnum} from "../etc/doc.type";
 import {PaginationReqDto} from "../dto/req/pagination.req-dto";
 import {PaginationResDto} from "../dto/res/pagination.res-dto";
-import {TaskService} from "src/module/task/task.service";
 
 @Injectable()
 export class DocsService {
@@ -33,9 +32,6 @@ export class DocsService {
   constructor(
     @InjectRepository(DocEntity)
     private readonly docRepo: Repository<DocEntity>,
-
-    @Inject(forwardRef(() => TaskService))
-    private readonly taskService: TaskService,
 
     private readonly dataSource: DataSource,
   ) {}
@@ -53,14 +49,6 @@ export class DocsService {
 
     const doc = await this.docRepo.save(dto);
     dto.idx = doc.idx;
-    if (doc.isScheduled) {
-      try {
-        await this.taskService.createScheduledProofJob(dto);
-      } catch (error) {
-        this.logger.error(`예약 잡 생성 실패: ${error.message}`, error.stack);
-        // 배치 잡 실패해도 문서 저장은 성공으로 처리
-      }
-    }
 
     const res = plainToInstance(DocResDto, doc);
     return Result.success(res, "문서 생성 완료");
@@ -229,7 +217,6 @@ export class DocsService {
         idx: idx,
       },
     });
-    return404ErrorIfEmpty(doc, "제증명 없음");
 
     const res = plainToInstance(DocResDto, doc);
     return Result.success(res, "제증명 조회 완료");
