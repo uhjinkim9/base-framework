@@ -1,0 +1,37 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+
+	.inputGroup {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem;
+		width: 80%;
+
+		.inputWrapper {
+			width: 100%;
+		}
+	}
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.toggleGroup {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	gap: 3rem;
+	width: 80%;
+	padding-bottom: 2rem;
+}

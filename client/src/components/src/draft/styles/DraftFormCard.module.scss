@@ -1,0 +1,61 @@
+@use "@/styles/variables" as *;
+@use "@/styles/common" as *;
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	padding: 0.5rem;
+	/* hover 효과 */
+	&:hover {
+		//     background-color: $gray1;
+		//     border-radius: 5px;
+		cursor: pointer;
+	}
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	gap: 0.7rem;
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+.name {
+	font-size: 0.85rem;
+}
+
+.smallInfo {
+	font-weight: 300;
+	font-size: 0.8rem;
+	color: $gray5;
+	overflow: hidden;
+	vertical-align: middle;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; // 최대 1줄까지 보이기
+	line-clamp: 1; // 표준 속성 추가
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-left: 1rem;
+}
+
+.prefixMark {
+	padding: 3px 12px;
+	font-size: 0.8rem;
+	text-align: center;
+	border-radius: 5px;
+	color: white;
+}
+
+.title {
+	font-weight: 500;
+	font-size: 1.15rem;
+	//   color: black;
+	cursor: pointer;
+}

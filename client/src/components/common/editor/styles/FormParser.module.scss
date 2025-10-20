@@ -1,0 +1,48 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.container {
+	width: 1000px;
+	padding: 0 3cm;
+	box-sizing: border-box;
+	// overflow-x: auto
+}
+
+.container table {
+	border-collapse: collapse;
+	margin: 12px 0;
+	table-layout: fixed; /* 고정 레이아웃으로 높이 안정화 */
+	width: auto;
+
+	td {
+		padding: 10px;
+		box-sizing: border-box;
+	}
+}
+
+.container th,
+.container td {
+	border: 1px solid #000000;
+	padding: 0 10px;
+	font-size: 14px;
+	position: relative;
+	vertical-align: top;
+	word-wrap: break-word;
+	box-sizing: border-box;
+}
+
+.container th {
+	background-color: #f2f2f2;
+	font-weight: 600;
+}
+
+.required {
+	color: $red;
+	margin-right: 0.3rem;
+}

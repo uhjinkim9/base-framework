@@ -1,0 +1,78 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.mailViewContainer {
+	width: 100%;
+	height: 100%;
+}
+
+.mailInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	padding: 0.3rem 0.2rem;
+	gap: 1rem;
+	border-bottom: 1px solid black;
+
+	.title {
+		@extend .mainText;
+		@extend .row;
+		padding: 0.5rem 1rem;
+		// font-size: 1.2rem;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.recipients {
+		@extend .gap0dot2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		width: 100%;
+		margin-left: 1rem;
+
+		span.label {
+			@extend .label;
+			min-width: 4rem;
+		}
+		span {
+			@extend .subTextBlack;
+		}
+	}
+}
+
+.mailContent {
+	@extend .subTextBlack;
+	padding: 1rem;
+	border-bottom: 1px solid black;
+}
+
+.footer {
+	@extend .row;
+	justify-content: space-between;
+	align-items: start;
+	margin: 0.5rem 1rem 0;
+
+	.attachments {
+		@extend .column;
+		.file {
+			@extend .row;
+			@extend .gap0dot7rem;
+			justify-content: start;
+		}
+	}
+
+	.buttons {
+		@extend .gap1rem;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		.button {
+			@extend .row;
+			@extend .gap0dot5rem;
+			justify-content: end;
+		}
+	}
+}

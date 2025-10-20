@@ -1,0 +1,75 @@
+@use "@/styles/variables.scss" as *;
+
+.commentArea {
+  margin-top: 5px;
+  border: transparent;
+
+  .comment {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    textarea[name="comment"] {
+      resize: none;
+      width: 100%;
+      display: flex;
+      border: 1px solid #d9d9d9;
+      border-radius: 5px;
+      padding: 6px;
+      min-height: 56px;
+    }
+	
+    .commentHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      font-size: 0.85rem;
+
+      .commentInfo {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        gap: 10px;
+
+        .avatar {
+          display: flex;
+          font-size: 30px;
+        }
+
+        .commentWriter {
+          display: flex;
+          font-weight: 500;
+        }
+
+        .commentDate {
+          display: flex;
+          color: $gray4;
+          font-size: 0.7rem;
+        }
+      }
+
+      .deleteComment {
+        display: flex;
+
+        button {
+          background-color: transparent;
+          border: transparent;
+          color: $gray4;
+        }
+      }
+    }
+
+    .commentContent {
+      margin-top: 5px;
+      font-size: 14px;
+
+      input {
+        box-sizing: border-box;
+        border: none;
+        border-bottom: $gray4 1px solid;
+        width: 100%;
+      }
+    }
+  }
+}

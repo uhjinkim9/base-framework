@@ -1,0 +1,77 @@
+@use "@/styles/variables.scss" as *;
+
+.boardContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	font-size: clamp(11px, 13px, 15px);
+	font-weight: 400;
+}
+
+/* 헤더 스타일 */
+.boardHeader {
+	display: grid;
+	// place-items: center;
+	grid-template-columns: 5% 65% 15% 15%;
+	padding: 12px;
+	font-weight: bold;
+	border-bottom: 2px solid $gray5;
+}
+
+/* 리스트 스타일 */
+.boardList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* 개별 항목 */
+.boardItem {
+	display: grid;
+	grid-template-columns: 5% 10% 60% 13% 12%;
+	padding: 10px;
+	align-items: center;
+	border-bottom: 0.5px dotted rgba($color: $gray4, $alpha: 0.5);
+}
+
+.postTitle {
+	display: flex;
+	justify-content: space-between;
+	padding-right: 30px;
+	cursor: pointer;
+}
+
+.iconGroup {
+	display: flex;
+	gap: 10px;
+	color: $gray4;
+
+	span {
+		font-weight: 300;
+	}
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+	.boardHeader,
+	.boardItem {
+		grid-template-columns: 10% 10% 50% 15% 15%;
+	}
+}
+
+@media (max-width: 480px) {
+	.boardHeader {
+		display: none; // 모바일에서 헤더 숨김
+	}
+
+	.boardItem {
+		grid-template-columns: 20% 50% 30%;
+		font-size: 14px;
+
+		span:nth-child(4),
+		span:nth-child(5) {
+			display: none; // 작성자, 날짜 숨김
+		}
+	}
+}

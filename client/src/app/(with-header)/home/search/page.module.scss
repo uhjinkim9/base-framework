@@ -1,0 +1,85 @@
+@use "@/styles/variables.scss" as *;
+
+.main {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	padding-top: 100px;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+/* 카드 */
+.card-container-half {
+	width: 40%;
+	min-width: 300px;
+}
+
+.card-container-full {
+	width: calc(80% + 20px);
+}
+
+/* 탭 아이콘 그룹 */
+.iconWrapper {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-left: auto;
+}
+
+.icon {
+	font-size: clamp(35px, 2.5vw, 40px);
+	cursor: pointer;
+	color: $u-navy;
+	transition: all 0.3s ease-in-out;
+}
+
+/* 버튼 그룹 */
+.btn-group {
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+	width: 100%;
+}
+
+/* 달력 */
+.calendar-wrapper {
+	// display: flex;
+	display: inline-flex; // 콘텐츠 크기에 맞게 자동 조정
+	align-items: center;
+	justify-content: center;
+	max-height: 250px;
+	height: auto;
+	width: auto;
+}
+
+.calendar {
+	transform: scale(0.8); // 크기 축소
+	transform-origin: center; // 왼쪽 기준으로 축소
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+	.main {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 20% 0 0 0;
+		width: 100%;
+	}
+
+	.card-container-half {
+		width: 100%;
+	}
+
+	.card-container-full {
+		width: 100%;
+	}
+
+	.calendar-wrapper {
+		display: none;
+	}
+}

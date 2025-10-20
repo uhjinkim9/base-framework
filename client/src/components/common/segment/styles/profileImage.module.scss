@@ -1,0 +1,18 @@
+@use "@/styles/variables.scss" as *;
+
+/* 프로필 사진 */
+.profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.profileImage {
+	width: clamp(100px, 30vw, 160px);
+	height: clamp(100px, 30vw, 160px);
+	border-radius: 50%;
+	object-fit: cover;
+	border: 1px solid $gray4;
+}

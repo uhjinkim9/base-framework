@@ -1,0 +1,66 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+.container {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.containerLeft {
+	@extend .container;
+	width: calc(67% - 0.5rem);
+	min-width: 300px;
+}
+
+.containerRight {
+	@extend .container;
+	width: calc(33% - 0.5rem);
+	min-width: 200px;
+}
+
+.summaryWrap {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	&:not(:last-child) {
+		border-bottom: 1px dotted #d9d9d9;
+	}
+}
+
+.containerHalf {
+	@extend .container;
+	width: calc(50% - 0.5rem);
+	min-width: 250px;
+}
+
+.draftFormWrap {
+	border: 1px solid $gray3;
+	padding: 1rem;
+	max-width: 1000px;
+}
+
+// 태블릿 세로 (601px ~ 1024px)
+@media (width > 601px) and (width <= 1024px) {
+	.containerLeft,
+	.containerRight {
+		width: 100%;
+	}
+}
+
+// 모바일 (600px 이하)
+@media (width <= 600px) {
+	.containerLeft,
+	.containerRight,
+	.summaryItem,
+	.containerHalf {
+		width: 100%;
+		min-width: 100%;
+	}
+	.myDraftWrap {
+		min-height: initial;
+	}
+	.summaryItem {
+		padding: 0.5rem;
+	}
+}

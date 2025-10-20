@@ -1,0 +1,65 @@
+@use "@/styles/variables" as *;
+@use "@/styles/common" as *;
+
+/* 공통 */
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	background-color: white;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+	gap: 0.7rem;
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+	gap: 0.7rem;
+}
+
+.selectRepeatPeriod {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	font-size: 0.85rem;
+	gap: 0.5rem;
+	width: 100%;
+}
+
+.repeatDetail {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.8rem;
+	width: 100%;
+}
+
+/* PlanAddModalHeader */
+.radioGroup {
+	display: flex;
+	flex-direction: row;
+	gap: 3rem;
+	padding: 0.1rem 0.8rem;
+}
+
+/* PlanViewModal */
+.icon {
+	color: $gray5;
+	font-size: 1.5rem;
+	transition: all 0.3s ease-in-out;
+}
+
+.indent {
+	margin-left: 2rem;
+}

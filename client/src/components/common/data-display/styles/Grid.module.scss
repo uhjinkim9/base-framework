@@ -1,0 +1,76 @@
+@use "./variables.scss" as *;
+
+.container {
+	height: 100%;
+	width: 100%;
+}
+
+.table {
+	font-size: 0.85rem;
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	overflow: hidden;
+	table-layout: auto;
+
+	th,
+	td {
+		border-right: 1px solid black; // 우측 경계선
+		border-bottom: 1px dashed #ddd;
+		align-items: center;
+		text-align: center;
+		vertical-align: middle;
+		word-break: break-word;
+		padding: 0.3em 0.5rem;
+
+		&:last-child {
+			border-right: none; // 마지막 컬럼은 우측선 제거
+		}
+	}
+
+	th {
+		background-color: #fff;
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+		font-weight: 600;
+	}
+
+	tbody tr:last-child td {
+		border-bottom: none;
+	}
+
+	td:last-child {
+		text-align: left;
+		white-space: pre-wrap;
+	}
+}
+
+// 수정 가능한 셀 내부 div 스타일
+.editableCell {
+	width: auto;
+	border: 1px solid $gray3;
+	border-radius: 4px;
+	box-sizing: border-box;
+	padding: 0.3em 0.5rem;
+	cursor: pointer;
+}
+
+// 수정 시 셀 내부의 input 스타일
+.cellInput {
+	font-size: inherit;
+	width: 100%;
+	border: none;
+	border-radius: 4px;
+	text-align: inherit;
+	vertical-align: middle;
+	box-sizing: border-box;
+	line-height: 1;
+	background-color: $gray1;
+}
+
+.hoverableRow {
+	cursor: pointer;
+	&:hover {
+		background-color: #f0f0f0; /* 원하는 hover 효과 */
+	}
+}

@@ -1,0 +1,60 @@
+@use "@/styles/variables.scss" as *;
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 50px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* 카드 */
+.cardcontainerHalf {
+  width: 40%;
+  min-width: 300px;
+}
+
+.card-container-full {
+  width: calc(80% + 20px);
+}
+
+/* 달력 */
+.calendar-wrapper {
+  // display: flex;
+  display: inline-flex; // 콘텐츠 크기에 맞게 자동 조정
+  align-items: center;
+  justify-content: center;
+  max-height: 250px;
+  height: auto;
+  width: auto;
+}
+
+.calendar {
+  transform: scale(0.8); // 크기 축소
+  transform-origin: center; // 왼쪽 기준으로 축소
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20% 0 0 0;
+    width: 100%;
+  }
+
+  .cardcontainerHalf {
+    width: 100%;
+  }
+
+  .card-container-full {
+    width: 100%;
+  }
+
+  .calendar-wrapper {
+    display: none;
+  }
+}

@@ -1,0 +1,9 @@
+@use "@/styles/variables.scss" as *;
+
+.boardListWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	gap: 1rem;
+}

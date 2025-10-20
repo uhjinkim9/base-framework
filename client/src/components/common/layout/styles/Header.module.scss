@@ -1,0 +1,67 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+$header-side-padding: 100px;
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: calc(100% - ($header-side-padding * 2));
+	height: 70px;
+	background-color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 $header-side-padding;
+	z-index: 4;
+	transition: all 0.3s ease-in-out;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.iconWrapper,
+.menuWrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex: 1;
+}
+
+.menuWrapper {
+	gap: 2rem;
+	justify-content: flex-end;
+}
+
+.symbol {
+	width: 30px;
+	height: 30px;
+	transition: all 0.3s ease-in-out;
+}
+
+/* 반응형 */
+@media (max-width: 600) {
+	$header-side-padding: 16px;
+
+	.header {
+		height: 50px;
+		width: calc(100% - ($header-side-padding * 2));
+		padding: 0 $header-side-padding;
+	}
+
+	.iconWrapper,
+	.menuWrapper {
+		display: flex;
+		align-items: center;
+		flex: 1;
+	}
+
+	.menuWrapper {
+		gap: 10px;
+		justify-content: flex-end;
+	}
+
+	.symbol {
+		width: 16px;
+		height: auto;
+	}
+}

@@ -1,0 +1,161 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+// List
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+  flex: 1;
+}
+
+.mailListContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mailListHeader {
+  @extend .row;
+  padding: 0.3rem 1rem 0.5rem;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+}
+
+.noContact {
+  @extend .subTextGray;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+// ListLine
+.lineWrapper {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 0.6fr 0.6fr 0.6fr 0.6fr 0.6fr 0.6fr 0.6fr 0.3fr 0.3fr 0.3fr;
+  grid-template-areas: "check policyNm weeklyHours breakStart breakEnd coreStart coreEnd defaultStart defaultEnd autoCheckout mappedEmp editBtn";
+  text-align: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 0.1rem 0.8rem;
+  min-height: 1rem;
+  border-bottom: 1px solid $gray1;
+  border-left: 3px solid transparent; // 기본적으로 투명한 보더 설정
+
+  .check {
+    grid-area: check;
+  }
+
+  .policyNm {
+    @extend .subTextBlack;
+    grid-area: policyNm;
+  }
+
+  .weeklyHours {
+    @extend .subTextBlack;
+    grid-area: weeklyHours;
+  }
+
+  .breakStart {
+    @extend .subTextBlack;
+    grid-area: breakStart;
+  }
+  .breakEnd {
+    @extend .subTextBlack;
+    grid-area: breakEnd;
+  }
+
+  .coreStart {
+    @extend .subTextBlack;
+    @extend .pointer;
+    grid-area: coreStart;
+  }
+  .coreEnd {
+    @extend .subTextBlack;
+    grid-area: coreEnd;
+  }
+
+  .defaultStart {
+    @extend .subTextBlack;
+    grid-area: defaultStart;
+  }
+  .defaultEnd {
+    @extend .subTextBlack;
+    grid-area: defaultEnd;
+  }
+
+  .autoCheckout {
+    @extend .subTextBlack;
+    grid-area: autoCheckout;
+  }
+
+  .mappedEmp {
+    @extend .subTextBlack;
+    grid-area: mappedEmp;
+  }
+
+  .editBtn {
+    @extend .subTextBlack;
+    grid-area: editBtn;
+  }
+
+  // 선택된 항목 스타일
+  &.selected {
+    background-color: rgba($u-orange, 0.1);
+    border-left-color: $u-orange; // 투명한 보더의 색상만 변경
+  }
+
+  // 호버 효과
+  &:hover:not(.headerRow) {
+    background-color: rgba($u-orange, 0.1);
+  }
+}
+
+.headerRow {
+  background-color: $gray1;
+  padding: 0.75rem 0.1rem;
+  border-bottom: 1px solid $gray2;
+
+  .check,
+  .isImportant,
+  .policyNm,
+  .weeklyHours,
+  .breakStart,
+  .breakEnd,
+  .coreStart,
+  .coreEnd,
+  .defaultStart,
+  .defaultEnd,
+  .autoCheckout,
+  .showEmps,
+  .mappedEmp,
+  .editBtn {
+    @extend .subTextGray;
+    font-weight: 600;
+  }
+
+  .isImportant {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// 반응형 대응
+@media (max-width: 1200px) {
+  .lineWrapper {
+    grid-template-columns: 0.3fr 0.8fr 2fr 2.5fr 1.5fr 2fr 1fr 1fr 0.3fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .lineWrapper {
+    grid-template-columns: 0.3fr 1fr 2fr 1fr;
+    grid-template-areas:
+      "check isImportant policyNm coreEnd"
+      "defaultStart defaultEnd autoCheckout showEmps";
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
+  }
+}

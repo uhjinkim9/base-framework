@@ -1,0 +1,145 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+/*********************************
+ * checkBox Component Styles
+ * type: orange, gray, mark
+ *********************************/
+
+/* 공통 */
+.checkbox {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 400;
+  position: relative;
+}
+
+/* 기본 체크박스 숨기기 */
+.input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+
+/* 커스텀 체크 표시 */
+.checkmark {
+  width: 14px;
+  height: 14px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.normalCheckmark {
+  @extend .checkmark;
+  border: 1px solid $gray5;
+}
+
+.iconCheckmark {
+  @extend .checkmark;
+  border: none;
+  background: transparent;
+  cursor: pointer; // 여기가 핵심!
+}
+
+/* Label 스타일 */
+.label {
+  margin-left: 8px;
+  color: $gray5;
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+/* ===== 타입별 스타일 ===== */
+
+/* 오렌지 타입 (기본값) */
+.orange {
+  .normalCheckmark {
+    border-color: $gray5;
+
+    .icon {
+      visibility: hidden;
+    }
+  }
+
+  .input:checked + .normalCheckmark {
+    background-color: $u-orange;
+    border-color: $u-orange;
+  }
+}
+
+/* 그레이 타입 */
+.gray {
+  .normalCheckmark {
+    border-color: $gray4; // 연한 회색 테두리
+    background-color: white;
+
+    .icon {
+      visibility: hidden;
+    }
+  }
+
+  .input:checked + .normalCheckmark {
+    background-color: $gray4;
+    border-color: $gray4;
+  }
+}
+
+/* 마크 타입 */
+.mark {
+  .normalCheckmark {
+    width: 14px;
+    height: 14px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $gray4;
+    background-color: white;
+    transition: all 0.3s ease;
+    position: relative;
+
+    .icon {
+      color: white;
+      text-align: center;
+      transform: scale(1.5);
+      transform-origin: center center; // 가로 기준점, 세로 기준점
+    }
+  }
+
+  & .input:checked + .normalCheckmark .icon {
+    // '&'는 부모 셀렉터(.mark) 참조
+    color: $u-orange;
+    transition: all 0.3s ease;
+  }
+  & .input:checked + .normalCheckmark {
+    border: 1px solid $u-orange;
+  }
+}
+
+/* 스타 타입 */
+.star {
+  .normalCheckmark {
+    width: 16px;
+    height: 16px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .icon {
+      display: none; // 기본 체크 아이콘 숨김
+    }
+  }
+}

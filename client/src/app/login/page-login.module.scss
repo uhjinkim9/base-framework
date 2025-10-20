@@ -1,0 +1,103 @@
+@use "@/styles/variables.scss" as *;
+
+// 템플릿을 수정한 거라 불필요한 값 확인하고 지우는 것 잊지 말기!
+
+.page {
+	display: grid;
+	grid-template-rows: 20px 1fr 20px;
+	align-items: center;
+	justify-items: center;
+	min-height: 100svh;
+	gap: 64px;
+}
+
+.main {
+	display: flex;
+	flex-direction: column; /* 세로로 쌓이는 속성 */
+	align-items: center;
+	flex-wrap: wrap; /* 필요할 때 줄바꿈 허용, 자동 줄바꿈 */
+	grid-row-start: 2;
+	gap: 20px;
+}
+
+// Welcome
+.title {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+}
+
+.welcome {
+	font-size: 16px;
+	font-weight: 200;
+}
+
+.line {
+	width: 83px;
+	height: 1px;
+	background-color: $u-orange;
+	border: none;
+}
+
+// 아이디 저장, PW 찾기
+.subsidiary {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 25px;
+	width: 100%;
+}
+
+.login-button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+}
+
+// 배경 유큐브 로고
+.background {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: auto;
+	height: auto;
+	z-index: -1;
+}
+
+.logoImage {
+	width: 600;
+	height: auto;
+}
+
+@media (max-width: 768px) {
+	.background {
+		position: absolute;
+		right: 10px;
+		bottom: 10px;
+		width: auto;
+		height: auto;
+		z-index: -1;
+	}
+
+	.background img {
+		width: 200px; // 모바일에서는 크기 축소
+	}
+}
+
+@media (max-width: 600px) {
+	.page {
+		padding: 32px;
+		padding-bottom: 80px;
+	}
+
+	.main {
+		align-items: center;
+	}
+
+	.main ol {
+		text-align: center;
+	}
+}

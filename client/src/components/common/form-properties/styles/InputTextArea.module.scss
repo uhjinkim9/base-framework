@@ -1,0 +1,35 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	padding: 0 0.2rem;
+	width: 100%;
+	gap: 0.5rem;
+	box-sizing: border-box;
+}
+
+.textarea {
+	box-sizing: border-box;
+	padding: 0.3rem;
+	border-radius: 5px;
+	resize: vertical;
+
+	&::placeholder {
+		color: $gray4;
+		font-size: 0.8rem;
+		opacity: 0.9;
+	}
+}
+
+.grayBorder {
+	@extend .textarea;
+	border: solid 0.5px $gray3;
+}
+
+.noBorder {
+	@extend .textarea;
+	border: transparent;
+}

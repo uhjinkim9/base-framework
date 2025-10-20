@@ -1,0 +1,148 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+// List
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+  gap: 1rem;
+}
+
+// 그룹 행 스타일
+.groupRow {
+  cursor: pointer;
+  
+  &:hover {
+    background-color: rgba($u-orange, 0.05);
+  }
+}
+
+.selectedRow {
+  background-color: rgba($u-orange, 0.1);
+  border-left: 3px solid $u-orange;
+}
+
+.selectedGroupInfo {
+  font-size: 0.9rem;
+  color: $gray4;
+  margin-left: 0.5rem;
+}
+
+// 유저 정보 그리드
+.userInfo {
+  @extend .subTextBlack;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+// 편집 액션 버튼들
+.editActions {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.mailListContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mailListHeader {
+  @extend .row;
+  padding: 0.3rem 1rem 0.5rem;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+}
+
+.noContact {
+  @extend .subTextGray;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+// ListLine
+.lineWrapper {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 0.3fr 0.3fr;
+  grid-template-areas: "check groupNm editBtn mapping";
+  text-align: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 0.1rem 0.8rem;
+  min-height: 1rem;
+  border-bottom: 1px solid $gray1;
+  border-left: 3px solid transparent; // 기본적으로 투명한 보더 설정
+
+  // 유저 목록용 그리드 (5열: 체크박스, 이름, 부서, 직책, 편집)
+  &.userRow {
+    grid-template-columns: 0.3fr 1fr 1fr 1fr 0.5fr;
+    grid-template-areas: "check userId deptNm posNm editBtn";
+  }
+
+  .check {
+    grid-area: check;
+  }
+
+  .groupNm {
+    @extend .subTextBlack;
+    grid-area: groupNm;
+  }
+
+  .editBtn {
+    @extend .subTextBlack;
+    grid-area: editBtn;
+  }
+
+  .mapping {
+    @extend .subTextBlack;
+    grid-area: mapping;
+  }
+
+  // 선택된 항목 스타일
+  &.selected {
+    background-color: rgba($u-orange, 0.1);
+    border-left-color: $u-orange; // 투명한 보더의 색상만 변경
+  }
+
+  // 호버 효과
+  &:hover:not(.headerRow) {
+    background-color: rgba($u-orange, 0.1);
+  }
+}
+
+.headerRow {
+  background-color: $gray1;
+  padding: 0.75rem 0.1rem;
+  border-bottom: 1px solid $gray2;
+
+  .check,
+  .groupNm,
+  .editBtn,
+  .mapping {
+    @extend .subTextGray;
+    font-weight: 600;
+  }
+}
+
+// 반응형 대응
+@media (max-width: 1200px) {
+  .lineWrapper {
+    grid-template-columns: 0.3fr 0.8fr 2fr 2.5fr 1.5fr 2fr 1fr 1fr 0.3fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .lineWrapper {
+    grid-template-columns: 0.3fr 1fr 2fr 1fr;
+    grid-template-areas:
+      "check isImportant groupNm coreEnd"
+      "defaultStart defaultEnd autoCheckout showEmps";
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,45 @@
+@use "@/styles/variables.scss" as *;
+
+@keyframes popIn {
+	from {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.contextMenu {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	min-width: 120px;
+	text-align: center;
+	animation: popIn 0.2s ease-out;
+	z-index: 3;
+
+	li {
+		padding: 8px 12px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #f2f2f2;
+		}
+	}
+
+	// 첫 번째 항목 ('추가할 항목')
+	li:first-child {
+		cursor: default;
+		font-weight: bold;
+		border-bottom: 1px solid $gray3; // 얇은 검정 경계선
+		&:hover {
+			background-color: #fff; // hover 무시
+		}
+	}
+}

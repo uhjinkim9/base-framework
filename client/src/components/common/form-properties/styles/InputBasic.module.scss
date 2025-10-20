@@ -1,0 +1,38 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0.2rem;
+	gap: 0.7rem;
+}
+
+.noPadding {
+	padding: 0 !important;
+}
+
+// Type: basic
+.basic.input {
+	box-sizing: border-box;
+	outline: none;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: 1px solid $gray4;
+	background: transparent;
+	font-weight: 200;
+	font-size: 0.85rem;
+	padding: 0.3rem;
+
+	&.readOnly {
+		background-color: $gray3;
+	}
+
+	&::placeholder {
+		color: $gray4;
+		font-size: 0.8rem;
+		opacity: 0.9;
+	}
+}

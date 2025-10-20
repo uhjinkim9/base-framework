@@ -1,0 +1,59 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+// 공통 스타일
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+  gap: 0.7rem;
+}
+
+.noPadding {
+  padding: 0 !important;
+}
+
+// 셀렉트 박스 스타일
+.selectBox {
+  @extend .refTextBlack;
+  appearance: none; /* 최신 표준 */
+  -webkit-appearance: none; /* 크롬, 사파리 */
+  -moz-appearance: none; /* 파이어폭스 */
+
+  cursor: pointer;
+  background-color: white;
+  border-radius: 25px;
+  font-weight: 400;
+  padding: 0.25rem 1rem;
+  text-align: left; // 셀렉트 박스 내용 왼쪽 정렬
+  vertical-align: middle;
+
+  // 드롭다운 옵션 스타일
+  option {
+    text-align: left; // 옵션들 왼쪽 정렬
+    padding: 0.5rem 1rem;
+    background-color: white;
+    vertical-align: middle;
+
+    &:hover {
+      background-color: $gray2;
+    }
+
+    &:checked {
+      background-color: $u-orange;
+      color: white;
+    }
+  }
+}
+
+// .container::after {
+// 	content: "▾";
+// 	color: #333;
+// 	position: absolute;
+// 	right: rem;
+// 	top: 50%;
+// 	transform: translateY(-50%);
+// 	pointer-events: none; /* 화살표 클릭 불가능하게 */
+// }

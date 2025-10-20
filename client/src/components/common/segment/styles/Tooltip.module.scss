@@ -1,0 +1,67 @@
+// Tooltip.module.scss
+.tooltipWrapper {
+	position: relative;
+	display: inline-block;
+
+	.tooltipText {
+		visibility: hidden;
+		width: max-content;
+		background-color: rgba(0, 0, 0, 0.75);
+		color: #fff;
+		text-align: center;
+		border-radius: 4px;
+		padding: 6px 8px;
+		font-size: 12px;
+		white-space: nowrap;
+
+		/* 기본 위치 설정 */
+		position: absolute;
+		z-index: 10;
+		left: 50%;
+		transform: translateX(-50%);
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out;
+		pointer-events: none;
+
+		/* 위쪽 표시 (기본) */
+		&.top {
+			bottom: 125%;
+
+			/* 화살표 - 아래쪽 */
+			&::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				transform: translateX(-50%);
+				border-width: 6px;
+				border-style: solid;
+				border-color: rgba(0, 0, 0, 0.75) transparent transparent
+					transparent;
+			}
+		}
+
+		/* 아래쪽 표시 */
+		&.bottom {
+			top: calc(100% + 8px); // 요소 아래에 표시 (8px 간격)
+
+			/* 화살표 - 위쪽 */
+			&::after {
+				content: "";
+				position: absolute;
+				bottom: 100%; // 툴팁 위쪽에 화살표 배치
+				left: 50%;
+				transform: translateX(-50%);
+				border-width: 6px;
+				border-style: solid;
+				border-color: transparent transparent rgba(0, 0, 0, 0.75)
+					transparent;
+			}
+		}
+	}
+
+	&:hover .tooltipText {
+		visibility: visible;
+		opacity: 1;
+	}
+}

@@ -1,0 +1,10 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.onHoverOpaque {
+	transition: all 0.3s ease-in-out;
+
+	&:hover {
+		opacity: 0.6;
+	}
+}

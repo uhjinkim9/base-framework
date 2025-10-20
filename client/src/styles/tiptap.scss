@@ -1,0 +1,61 @@
+/* 팁탭 selectedCell 클래스를 위한 매우 구체적인 선택자 */
+td.selectedCell,
+th.selectedCell,
+td[class*="selectedCell"],
+th[class*="selectedCell"] {
+	background-color: rgba(255, 106, 0, 0.274) !important;
+	position: relative;
+	z-index: 10;
+	box-sizing: border-box;
+}
+
+/* 위젯을 완전히 숨기면서 공간 차지 안하게 */
+.column-resize-handle {
+	position: absolute !important;
+	width: 0 !important;
+	height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	background: transparent !important;
+	opacity: 0 !important;
+	visibility: hidden !important;
+	overflow: hidden !important;
+	pointer-events: none !important;
+}
+
+.ProseMirror-widget {
+	position: absolute !important;
+	width: 0 !important;
+	height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	background: transparent !important;
+	opacity: 0 !important;
+	visibility: hidden !important;
+	overflow: hidden !important;
+	pointer-events: none !important;
+}
+
+/* 팁탭 표 정렬 — table 요소만 타겟 */
+.ProseMirror table.table-align-left {
+	width: fit-content;
+	margin-left: 0;
+	margin-right: auto;
+}
+.ProseMirror table.table-align-center {
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+.ProseMirror table.table-align-right {
+	width: fit-content;
+	margin-left: auto;
+	margin-right: 0;
+}
+
+/* 베이스(선택) — 레이아웃만 안정화 */
+.ProseMirror table {
+	table-layout: auto;
+}

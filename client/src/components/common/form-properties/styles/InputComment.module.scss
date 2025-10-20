@@ -1,0 +1,57 @@
+@use "@/styles/variables.scss" as *;
+
+/* 기본 입력 필드 컨테이너 */
+.inputContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: all 0.3s ease-in-out;
+	background: transparent;
+	border: transparent;
+}
+
+.avatar {
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	flex: 1;
+	justify-content: center;
+	font-size: 30px;
+	padding: 8px 6px;
+}
+
+.commentInput {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	flex: 24;
+	border: 1px solid $gray3;
+	border-radius: 5px;
+
+	textarea {
+		background: transparent;
+		flex: 1;
+		height: 100px;
+		width: 97%;
+		margin: 10px;
+		resize: none;
+		border: transparent;
+	}
+
+	.commentActions {
+		display: flex;
+		flex-direction: row;
+		justify-content: end;
+		width: 99%;
+		padding-bottom: 5px;
+
+		button {
+			background: transparent;
+			border: none;
+			cursor: pointer;
+		}
+	}
+}

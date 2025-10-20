@@ -1,0 +1,30 @@
+.resizableImageWrapper {
+	margin: 1rem 0;
+	max-width: 100%;
+}
+
+.react-resizable {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 4px;
+	background-color: fff;
+
+	.react-resizable-handle {
+		position: absolute;
+		width: 2rem;
+		height: 2rem;
+		bottom: 0;
+		right: 0;
+		background: #888; // 또는 이미지 아이콘
+		border-radius: 2px;
+		cursor: se-resize;
+		z-index: 3;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			display: block;
+		}
+	}
+}

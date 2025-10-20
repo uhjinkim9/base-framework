@@ -1,0 +1,38 @@
+@use "@/styles/variables.scss" as *;
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	width: 100%;
+}
+
+.breadCrumb {
+	font-size: 0.78rem;
+	color: black;
+	margin-bottom: 20px;
+
+	ul {
+		display: flex;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	li {
+		display: flex;
+		align-items: center;
+
+		&:not(:last-child)::after {
+			content: "/";
+			margin: 0 8px;
+		}
+
+		a {
+			text-decoration: none;
+			color: black;
+			font-weight: 400;
+			transition: color 0.2s ease-in-out;
+		}
+	}
+}

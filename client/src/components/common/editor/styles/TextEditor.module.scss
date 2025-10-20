@@ -1,0 +1,62 @@
+@use "@/styles/variables.scss" as *;
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	height: 100%; /* 부모 높이에 맞춤 */
+}
+
+.editor {
+	display: flex;
+	flex-direction: column;
+	flex: 3.3;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 1rem;
+	font-size: 14px;
+	font-family: $pretendard;
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		border: 1px dashed $gray3;
+		border-radius: 5px;
+		padding: 2cm 3cm;
+		min-height: 20rem;
+		height: 100%; /* 부모 높이에 맞춤 */
+
+		div {
+			overflow-y: auto;
+			height: 100%; /* 부모 높이 전체 사용 */
+			flex: 1; /* 남은 공간 모두 차지 */
+
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+}
+
+.editorContent table {
+	border-collapse: collapse;
+	margin: 12px 0;
+	table-layout: fixed; /* 고정 레이아웃으로 높이 안정화 */
+	width: auto;
+}
+
+.editorContent th,
+.editorContent td {
+	border: 1px solid #000000;
+	padding: 0 10px;
+	font-size: 14px;
+	position: relative;
+	vertical-align: top;
+	word-wrap: break-word;
+	box-sizing: border-box;
+}
+
+.editorContent th {
+	background-color: #f2f2f2;
+	font-weight: 600;
+}

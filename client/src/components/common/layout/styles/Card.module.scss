@@ -1,0 +1,30 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.03);
+  max-width: 100%;
+  gap: 10px;
+}
+
+.cardMain {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 18px 30px;
+  width: calc(100% - 60px);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0 15px 0;
+    margin-top: 10px;
+    width: 98%;
+  }
+}

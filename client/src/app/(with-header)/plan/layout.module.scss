@@ -1,0 +1,45 @@
+@use "@/styles/variables.scss" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: 85vh;
+  width: 92vw;
+  gap: 2rem;
+  padding-bottom: 1rem;
+}
+
+.screen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* 내용물 항상 너비 채우기 */
+.content {
+  min-height: 70vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+// 태블릿 (1024px 이하)
+@media (width <= 1024px) {
+  .container {
+    width: 85vw;
+  }
+}
+// 모바일 (600px 이하)
+@media (width <= 600px) {
+  .container {
+    width: 90vw;
+  }
+}

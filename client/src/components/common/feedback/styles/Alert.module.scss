@@ -1,0 +1,130 @@
+@use "@/styles/variables.scss" as *;
+
+@keyframes slideIn {
+	from {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+@keyframes slideOut {
+	from {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	to {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+}
+
+.container.slideIn {
+	animation: slideIn 0.5s forwards;
+}
+
+.container.slideOut {
+	animation: slideOut 0.5s forwards;
+}
+
+.container {
+	border: transparent;
+	border-radius: 15px;
+	height: 100px;
+	width: 380px;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	box-sizing: border-box;
+	padding: 20px;
+
+	bottom: 20px; // 아래에서 20px
+	right: 20px; // 왼쪽에서 20px
+	z-index: 1000; // 다른 UI 위로 띄움
+
+	&.success {
+		background-color: $green;
+	}
+	&.info {
+		background-color: $skyblue;
+	}
+	&.warn {
+		background-color: $yellow;
+	}
+	&.error {
+		background-color: $red;
+	}
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.iconWrapper {
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+
+	&.success {
+		background-color: white;
+		color: $green;
+	}
+	&.info {
+		background-color: #004270;
+		color: $skyblue;
+	}
+	&.warn {
+		background-color: black;
+		color: $yellow;
+	}
+	&.error {
+		background-color: white;
+		color: $red;
+	}
+}
+
+.message {
+	&.success,
+	&.error {
+		color: white;
+	}
+	&.info,
+	&.warn {
+		color: black;
+	}
+}
+
+.buttonGroup {
+	display: flex;
+	flex-direction: row;
+	justify-content: end;
+	align-items: center;
+	width: 100%;
+	gap: 10px;
+	box-sizing: border-box;
+	padding-right: 20px;
+}
+
+.button {
+	color: black;
+	background-color: white;
+	border-radius: 20px;
+	box-sizing: border-box;
+	width: 58px;
+	height: 20px;
+	font-size: 13px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}

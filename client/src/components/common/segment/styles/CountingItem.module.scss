@@ -1,0 +1,82 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.item {
+	display: flex;
+	justify-content: space-between;
+	gap: 2rem;
+	flex-wrap: wrap;
+	width: calc(35% - 1rem);
+	flex-wrap: nowrap;
+	align-items: center;
+	padding: 0.5rem 2rem;
+	margin: 1rem 0;
+}
+
+.itemTitleCommon {
+	min-width: 120px;
+	display: flex; /* 추가 */
+	flex-wrap: wrap; /* 줄바꿈 허용 */
+	align-items: center; /* 세로 중앙 정렬 */
+	justify-content: center; /* 가로 중앙 정렬 */
+	font-size: 1.2rem;
+	font-weight: 600;
+	height: 3rem;
+	align-items: center;
+	border: 2px solid #a1a1a1;
+	border-radius: 30px;
+	line-height: normal;
+}
+.itemTitle {
+	@extend .itemTitleCommon;
+	&:hover {
+		color: #ff6900;
+		border-color: #ff6900;
+	}
+}
+.itemTitleDark {
+	@extend .itemTitleCommon;
+	border: 2px solid #000927 !important;
+	background-color: #000927 !important;
+	color: #ffffff;
+}
+
+.itemsSubtitle {
+	text-align: center;
+	width: 100%;
+	font-size: 0.8rem;
+}
+.itemCount {
+	font-size: 2rem;
+	width: 50px;
+	text-align: right;
+}
+
+// 태블릿 세로 (601px ~ 1024px)
+@media (width > 600px) and (width <= 1024px) {
+	.item {
+		width: 50%;
+		gap: 1.5rem;
+		padding: 0.5rem 2rem;
+	}
+	.itemTitleCommon {
+		min-width: 150px;
+		font-size: 1.1rem;
+	}
+	.itemCount {
+		font-size: 1.8rem;
+	}
+}
+
+// 모바일 (600px 이하)
+@media (width <= 600px) {
+	.item {
+		width: 100%;
+		gap: 2rem;
+		padding: 0.5rem 0;
+	}
+	.itemTitleCommon {
+		min-width: 120px;
+		font-size: 1rem;
+	}
+}

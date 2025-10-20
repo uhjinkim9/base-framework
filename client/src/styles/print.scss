@@ -1,0 +1,40 @@
+// // 미디어 쿼리: 인쇄 스타일 지정
+// @media print {
+// 	@page {
+// 		size: A4 portrait;
+// 		margin: 0;
+// 	}
+
+// 	body {
+// 		overflow: visible !important;
+// 		margin: 0;
+// 		padding: 0;
+// 		width: 100%;
+// 	}
+
+// 	body * {
+// 		visibility: hidden;
+// 	}
+
+// 	.printArea,
+// 	.printArea * {
+// 		position: static !important;
+// 		visibility: visible !important;
+// 	}
+
+// 	.printArea {
+// 		width: 100%;
+// 		max-width: 100%;
+// 		min-height: 100vh;
+// 		margin: 0 auto !important;
+// 		background: white;
+// 		font-size: 16pt;
+// 		line-height: 1.6;
+// 		display: block !important;
+// 		position: relative !important;
+// 	}
+
+// 	.noPrint {
+// 		display: none !important;
+// 	}
+// }

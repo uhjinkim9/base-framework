@@ -1,0 +1,80 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+.container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.containerMain {
+  width: calc(67% - 0.5rem);
+  min-width: 300px;
+}
+
+.containerSide {
+  width: calc(33% - 0.5rem);
+  min-width: 200px;
+}
+.approvalLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.draftSubject {
+  font-weight: 500;
+  font-size: 2.3rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.attachmentsSection {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+// 모바일 기기 width: 430px
+@media (max-width: 430px) {
+  .container {
+    flex-direction: column; /* 세로 정렬 */
+    gap: 0.5rem; /* 간격 축소 */
+  }
+
+  .containerMain,
+  .containerSide {
+    width: 100%; /* 전체 너비 사용 */
+    min-width: unset; /* 최소 너비 제거 */
+  }
+
+  .draftSubject {
+    font-size: 1.3rem; /* 글자 크기 축소 */
+    margin-top: 1rem; /* 상단 여백 축소 */
+    margin-bottom: 0.5rem; /* 하단 여백 축소 */
+  }
+}
+
+// 태블릿 기기 width: 768px ~ 1024px
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    flex-direction: row; /* 가로 정렬 */
+    gap: 1rem; /* 간격 유지 */
+  }
+
+  .containerMain {
+    width: calc(70% - 1rem); /* 메인 컨테이너 너비 조정 */
+    min-width: 400px; /* 최소 너비 설정 */
+  }
+
+  .containerSide {
+    width: calc(30% - 1rem); /* 사이드 컨테이너 너비 조정 */
+    min-width: 250px; /* 최소 너비 설정 */
+  }
+
+  .draftSubject {
+    font-size: 1.3rem; /* 글자 크기 조정 */
+    margin-top: 1.5rem; /* 상단 여백 조정 */
+    margin-bottom: 1rem; /* 하단 여백 조정 */
+  }
+}

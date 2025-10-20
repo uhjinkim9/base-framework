@@ -1,0 +1,44 @@
+@use "@/styles/variables.scss" as *;
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: 4px;
+	align-items: center;
+	justify-content: space-between;
+
+	.dateInputGroup {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		align-items: center;
+
+		label {
+			color: $gray5;
+			font-size: 0.8rem;
+			vertical-align: middle;
+		}
+
+		input {
+			font-weight: 300;
+			font-size: 0.8rem;
+			color: $gray4;
+			border: 1px solid $gray4;
+			border-radius: 25px;
+			padding: 4px 8px;
+			background-color: white;
+			transition: border 0.3s ease;
+
+			&:focus {
+				border: 1px solid $u-orange;
+
+				outline: none;
+			}
+		}
+	}
+}
+
+.tilde {
+	color: $gray5;
+	font-size: 1.2rem;
+}

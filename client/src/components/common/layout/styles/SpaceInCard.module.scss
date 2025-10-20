@@ -1,0 +1,10 @@
+.space-in-card {
+  // display: flex;
+  display: inline-flex; // 콘텐츠 크기에 맞게 자동 조정
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: normal;
+  gap: 2px;
+  min-height: 100px;
+}

@@ -1,0 +1,121 @@
+{
+	"version": "0.2.0",
+	"compounds": [
+		{
+			"name": "Run All Microservices + Gateway",
+			"configurations": ["auth", "board", "menu", "gateway", "plan", "poll"]
+		}
+	],
+	"configurations": [
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "auth",
+			"skipFiles": ["<node_internals>/**"],
+			"runtimeArgs": [
+				"-r",
+				"tsconfig-paths/register",
+				"-r",
+				"ts-node/register"
+			],
+			"args": ["src/main.ts"],
+			"cwd": "${workspaceFolder}/server/auth",
+			"runtimeExecutable": "node",
+			"internalConsoleOptions": "openOnSessionStart",
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"preLaunchTask": "clean-auth"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "board",
+			"skipFiles": ["<node_internals>/**"],
+			"runtimeArgs": [
+				"-r",
+				"tsconfig-paths/register",
+				"-r",
+				"ts-node/register"
+			],
+			"args": ["src/main.ts"],
+			"cwd": "${workspaceFolder}/server/board",
+			"runtimeExecutable": "node",
+			"internalConsoleOptions": "openOnSessionStart",
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"preLaunchTask": "clean-board"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "menu",
+			"skipFiles": ["<node_internals>/**"],
+			"runtimeArgs": [
+				"-r",
+				"tsconfig-paths/register",
+				"-r",
+				"ts-node/register"
+			],
+			"args": ["src/main.ts"],
+			"cwd": "${workspaceFolder}/server/menu",
+			"runtimeExecutable": "node",
+			"internalConsoleOptions": "openOnSessionStart",
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"preLaunchTask": "clean-menu"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "plan",
+			"skipFiles": ["<node_internals>/**"],
+			"runtimeArgs": [
+				"-r",
+				"tsconfig-paths/register",
+				"-r",
+				"ts-node/register"
+			],
+			"args": ["src/main.ts"],
+			"cwd": "${workspaceFolder}/server/plan",
+			"runtimeExecutable": "node",
+			"internalConsoleOptions": "openOnSessionStart",
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"preLaunchTask": "clean-plan"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "poll",
+			"skipFiles": ["<node_internals>/**"],
+			"runtimeArgs": [
+				"-r",
+				"tsconfig-paths/register",
+				"-r",
+				"ts-node/register"
+			],
+			"args": ["src/main.ts"],
+			"cwd": "${workspaceFolder}/server/poll",
+			"runtimeExecutable": "node",
+			"internalConsoleOptions": "openOnSessionStart",
+			"env": {
+				"NODE_ENV": "development"
+			},
+			"preLaunchTask": "clean-poll"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "gateway",
+			"skipFiles": ["<node_internals>/**"],
+			"program": "${workspaceFolder}/gateway/server.js", // 진입점 JS 파일
+			"cwd": "${workspaceFolder}/gateway",
+			"runtimeExecutable": "node",
+			"internalConsoleOptions": "openOnSessionStart"
+		}
+	]
+}

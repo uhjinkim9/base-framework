@@ -1,0 +1,173 @@
+@use "@/styles/variables.scss" as *;
+
+.menuSection {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.1rem;
+}
+
+/* 중분류 리스트 */
+.subMenuList {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.3rem;
+}
+
+// 호버 시 메뉴 편집 아이콘 나타날 때 정렬
+.menuNameWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.menuItemWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  position: relative;
+}
+
+/* 중분류 개별 항목 */
+.subMenuItem {
+  font-size: 0.9rem;
+  padding: 0.4rem 1.5rem;
+  color: black;
+  transition: all 0.2s ease-in-out;
+  border-radius: 25px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* 활성화된 메뉴 아이콘 */
+.activeIcon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  background: $u-orange;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonIcon {
+  vertical-align: middle;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.settingButton {
+  align-self: flex-end;
+  margin-top: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.nodeFolder {
+  display: flex;
+  align-self: center;
+  font-size: 1.2rem;
+  margin: 0.3rem 0 0.7rem 0;
+  border-top: 1px dotted #717171;
+  border-bottom: 1px dotted #717171;
+  border-radius: 0px;
+  cursor: default;
+  padding: 0.3rem 0;
+
+  &:hover {
+    font-weight: initial;
+  }
+
+  .nodeIcon {
+    font-size: 1.2rem;
+  }
+
+  font-size: 1.05rem;
+  border-top: 1px dotted #717171;
+  border-bottom: 1px dotted #717171;
+  border-radius: 0px;
+  cursor: default;
+
+  // 첫 번째가 아닌 모든 요소에 margin-top 적용
+  &:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+}
+
+/* 메뉴 내용 (체크박스, 텍스트, 색상원 포함) */
+.menuContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+
+  span {
+    flex: 1;
+  }
+
+  /* 편집 버튼 영역 */
+  span:last-child {
+    flex: none;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.2s ease;
+
+    /* 버튼이 있을 때만 너비 확보 */
+    &:not(:empty) {
+      width: auto;
+    }
+  }
+}
+
+.editIconWrapper {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.menuInput {
+  border: none;
+  background: transparent;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  outline: none;
+  border-bottom: 1px solid $u-orange;
+  padding: 2px 4px;
+  width: 50%;
+}
+
+.pencilIcon {
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: $gray5;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $u-orange;
+  }
+}

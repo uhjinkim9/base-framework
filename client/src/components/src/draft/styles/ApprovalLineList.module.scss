@@ -1,0 +1,45 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.approvalLine {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+.draftSubject {
+	font-weight: 500;
+	font-size: 2.3rem;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+.approvalBadge {
+	display: flex;
+	width: 3.6rem;
+	height: 3.6rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	font-size: 1.2rem;
+	border: 2px solid $gray3;
+}
+
+// 모바일 기기 width: 430px
+@media (max-width: 430px) {
+	.draftSubject {
+		font-size: 1.3rem; /* 글자 크기 축소 */
+		margin-top: 1rem; /* 상단 여백 축소 */
+		margin-bottom: 0.5rem; /* 하단 여백 축소 */
+	}
+}
+
+// 태블릿 기기 width: 768px ~ 1024px
+@media (min-width: 768px) and (max-width: 1024px) {
+	.draftSubject {
+		font-size: 1.3rem; /* 글자 크기 조정 */
+		margin-top: 1.5rem; /* 상단 여백 조정 */
+		margin-bottom: 1rem; /* 하단 여백 조정 */
+	}
+}

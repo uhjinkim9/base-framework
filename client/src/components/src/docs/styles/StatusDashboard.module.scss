@@ -1,0 +1,69 @@
+@use "@/styles/variables.scss" as *;
+
+.container {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 1rem;
+	width: 100%;
+}
+
+.containerLeft {
+	display: grid;
+	grid-template-rows: auto auto;
+	gap: 1rem;
+	min-width: 300px;
+}
+
+.containerRight {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	gap: 1rem;
+	min-width: 300px;
+}
+
+.summaryWrap {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	&:not(:last-child) {
+		border-bottom: 1px dotted #d9d9d9;
+	}
+}
+
+.containerHalf {
+	@extend .container;
+	width: calc(50% - 0.5rem);
+	min-width: 250px;
+}
+
+.myDraftWrap {
+	min-height: 270px;
+}
+
+@media (width <= 600px) {
+	.container {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto;
+	}
+
+	.containerLeft,
+	.containerRight {
+		min-width: 100%;
+	}
+
+	.containerRight {
+		grid-template-rows: auto auto;
+	}
+
+	.containerHalf {
+		width: 100%;
+		min-width: 100%;
+	}
+	.myDraftWrap {
+		min-height: initial;
+	}
+	.summaryItem {
+		padding: 0.5rem;
+	}
+}

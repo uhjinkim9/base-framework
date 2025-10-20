@@ -1,0 +1,149 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+// ContactList
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+  flex: 1;
+}
+
+.mailListContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mailListHeader {
+  @extend .row;
+  padding: 0.3rem 1rem 0.5rem;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+}
+
+.noContact {
+  @extend .subTextGray;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+// ContactListLine
+.lineWrapper {
+  display: grid;
+  grid-template-columns: 0.3fr 0.5fr 0.7fr 0.7fr 0.7fr 1.5fr 0.7fr 1.3fr 1fr 0.5fr;
+  grid-template-areas: "check isImportant companyNm userId korNm email deptNm mobile empNo editBtn";
+  text-align: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 0.1rem 0.8rem;
+  min-height: 1rem;
+  border-bottom: 1px solid $gray1;
+  border-left: 3px solid transparent; // 기본적으로 투명한 보더 설정
+
+  .check {
+    grid-area: check;
+  }
+
+  .isImportant {
+    grid-area: isImportant;
+  }
+
+  .companyNm {
+    @extend .subTextBlack;
+    grid-area: companyNm;
+  }
+
+  .userId {
+    @extend .subTextBlack;
+    grid-area: userId;
+  }
+
+  .korNm {
+    @extend .subTextBlack;
+    @extend .pointer;
+    grid-area: korNm;
+  }
+
+  .email {
+    @extend .subTextBlack;
+    grid-area: email;
+  }
+
+  .deptNm {
+    @extend .subTextBlack;
+    grid-area: deptNm;
+  }
+
+  .mobile {
+    @extend .subTextBlack;
+    grid-area: mobile;
+  }
+
+  .empNo {
+    @extend .subTextBlack;
+    grid-area: empNo;
+  }
+
+  .editBtn {
+    @extend .subTextBlack;
+    grid-area: editBtn;
+  }
+
+  // 선택된 항목 스타일
+  &.selected {
+    background-color: rgba($u-orange, 0.1);
+    border-left-color: $u-orange; // 투명한 보더의 색상만 변경
+  }
+
+  // 호버 효과
+  &:hover:not(.headerRow) {
+    background-color: rgba($u-orange, 0.1);
+  }
+}
+
+.headerRow {
+  background-color: $gray1;
+  padding: 0.75rem 0.1rem;
+  border-bottom: 1px solid $gray2;
+
+  .check,
+  .isImportant,
+  .companyNm,
+  .userId,
+  .korNm,
+  .email,
+  .deptNm,
+  .mobile,
+  .empNo,
+  .editBtn {
+    @extend .subTextGray;
+    font-weight: 600;
+  }
+
+  .isImportant {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// 반응형 대응
+@media (max-width: 1200px) {
+  .lineWrapper {
+    grid-template-columns: 0.3fr 0.8fr 2fr 2.5fr 1.5fr 2fr 1fr 1fr 0.3fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .lineWrapper {
+    grid-template-columns: 0.3fr 1fr 2fr 1fr;
+    grid-template-areas:
+      "check isImportant companyNm email"
+      "deptNm mobile empNo editBtn";
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
+  }
+}

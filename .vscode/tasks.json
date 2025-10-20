@@ -1,0 +1,45 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "clean-auth",
+			"type": "shell",
+			"command": "rimraf dist",
+			"options": {
+				"cwd": "${workspaceFolder}/server/auth"
+			}
+		},
+		{
+			"label": "clean-board",
+			"type": "shell",
+			"command": "rimraf dist",
+			"options": {
+				"cwd": "${workspaceFolder}/server/board"
+			}
+		},
+		{
+			"label": "clean-menu",
+			"type": "shell",
+			"command": "rimraf dist",
+			"options": {
+				"cwd": "${workspaceFolder}/server/menu"
+			}
+		},
+				{
+			"label": "clean-plan",
+			"type": "shell",
+			"command": "rimraf dist",
+			"options": {
+				"cwd": "${workspaceFolder}/server/plan"
+			}
+		},
+				{
+			"label": "clean-poll",
+			"type": "shell",
+			"command": "rimraf dist",
+			"options": {
+				"cwd": "${workspaceFolder}/server/poll"
+			}
+		},
+	]
+}

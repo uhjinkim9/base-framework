@@ -1,0 +1,63 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.mailViewContainer {
+	@extend .fullAll;
+}
+
+.mailInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	padding: 0.3rem 0.2rem;
+
+	.title {
+		@extend .mainText;
+		@extend .row;
+		padding: 0.5rem 1rem;
+		align-items: center;
+		gap: 1rem;
+		width: 97%;
+	}
+
+	.recipients {
+		@extend .gap0dot2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		width: 100%;
+		margin-left: 1rem;
+
+		.emails {
+			display: flex;
+			flex-direction: row;
+			gap: 0.5rem;
+
+			span.label {
+				@extend .row;
+				@extend .label;
+				vertical-align: middle;
+				min-width: 3rem;
+				gap: 0.3rem;
+			}
+			span {
+				@extend .subTextBlack;
+			}
+		}
+	}
+}
+
+.mailContent {
+	@extend .subTextBlack;
+	padding: 1rem;
+	border-bottom: 1px solid black;
+}
+
+.footer {
+	@extend .column;
+	justify-content: start;
+	align-items: end;
+	margin: 0.5rem 1rem 0;
+	gap: 1rem;
+}

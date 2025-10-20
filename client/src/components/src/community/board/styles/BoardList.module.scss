@@ -1,0 +1,44 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+/** 정렬, 검색란, 목록 감싸는 래퍼 */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  .orderAndSearch {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+
+    .selectBox {
+      display: flex;
+      flex: 1;
+    }
+
+    .searchBox {
+      display: flex;
+      flex: 5;
+      justify-content: end;
+    }
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  flex: 9;
+}
+
+.postTitle {
+  cursor: pointer;
+}
+
+.notice {
+  font-weight: 600;
+  color: $u-orange;
+}

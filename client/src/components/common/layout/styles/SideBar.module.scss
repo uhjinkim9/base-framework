@@ -1,0 +1,253 @@
+@use "@/styles/variables.scss" as *;
+
+.container {
+  display: flex;
+  flex: 0.8;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 100%;
+}
+
+.menuColumn {
+  display: flex;
+  flex: 9;
+  flex-direction: column;
+  justify-content: start;
+  background: white;
+  padding: 1.1rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.03);
+  border: 1px solid $gray3;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.menuColumn a {
+  text-align: center;
+  width: 90%;
+  border: 1px;
+}
+
+/*************************** 개별 사이드바 ***************************/
+
+.menuSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 0.1rem;
+}
+
+/* 중분류 리스트 */
+.subMenuList {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.3rem;
+  width: 100%;
+
+  /* 내부 div 요소들도 full width */
+  > div {
+    width: 100%;
+  }
+}
+
+// 호버 시 메뉴 편집 아이콘 나타날 때 정렬
+.menuNameWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.menuItemWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+/* 중분류 개별 항목 */
+.subMenuItem {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  padding: 0.4rem;
+  color: black;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 25px;
+  box-sizing: border-box;
+
+  &:hover {
+    font-weight: 500;
+  }
+}
+
+/* 활성화된 메뉴 */
+.active {
+  background: white;
+  font-weight: bold;
+  border: 1px solid $u-orange;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* 활성화된 메뉴 아이콘 */
+.activeIcon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  background: $u-orange;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonIcon {
+  vertical-align: middle;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.settingButton {
+  align-self: flex-end;
+  margin-top: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.nodeFolder {
+  display: flex;
+  align-self: center;
+  font-size: 1.2rem;
+  margin: 0.3rem 0 0.7rem 0;
+  border-top: 1px dotted #717171;
+  border-bottom: 1px dotted #717171;
+  border-radius: 0px;
+  cursor: default;
+  padding: 0.3rem 0;
+
+  &:hover {
+    font-weight: initial;
+  }
+
+  .nodeIcon {
+    font-size: 1.2rem;
+  }
+
+  font-size: 1.05rem;
+  border-top: 1px dotted #717171;
+  border-bottom: 1px dotted #717171;
+  border-radius: 0px;
+  cursor: default;
+
+  // 첫 번째가 아닌 모든 요소에 margin-top 적용
+  &:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+}
+
+/* 메뉴 내용 (체크박스, 텍스트, 색상원 포함) */
+.menuContent {
+  display: flex;
+  flex-direction: row;
+  // justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  flex: 1;
+  overflow: hidden; // 컨테이너 너비를 넘지 않도록
+  max-width: 200px; // 최대 너비 제한
+
+  span {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  // 편집 모드 컨테이너
+  div {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* 편집 버튼 영역 */
+  span:last-child {
+    flex: none;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.2s ease;
+
+    /* 버튼이 있을 때만 너비 확보 */
+    &:not(:empty) {
+      width: auto;
+    }
+  }
+}
+
+.pencilIcon {
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: $gray5;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $u-orange;
+  }
+}
+
+.editIconWrapper {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.menuInput {
+  border: none;
+  background: transparent;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  outline: none;
+  border-bottom: 1px solid $u-orange;
+  padding: 2px 4px;
+  margin: 0;
+  width: 100%;
+}
+.menuInput {
+  border: transparent;
+  width: 50%;
+  text-align: center;
+  border-bottom: 1px solid $gray3;
+  font-size: 0.9rem;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $u-orange;
+    transition: border-bottom 0.2s ease-in-out;
+  }
+}

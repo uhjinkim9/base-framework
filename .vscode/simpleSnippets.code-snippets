@@ -1,0 +1,104 @@
+{
+	"request-get": {
+		"prefix": "get",
+		"body": [
+			"const res = await requestGet(\"/application/methodName\");",
+			"console.log(res);"
+		],
+		"description": "GET 요청"
+	},
+
+	"request-post": {
+		"prefix": "post",
+		"body": [
+			"try {",
+			"  const param = {",
+			"    param: \"example\",",
+			"  };",
+			"  const res = await requestPost(\"/application/methodName\", param);",
+			"  if (res.statusCode === 200) {",
+			"    AlertService.success(res.message);",
+			"    console.log('응답 성공 데이터:', res.data);",
+			"  } else {",
+			"    AlertService.error(`methodName 실패했습니다: ${res.message || \"알 수 없는 오류\"}`);",
+			"  }",
+			"} catch (error) {",
+			"  console.error(\"addGroup 에러:\", error);",
+			"  AlertService.error(\"그룹 생성 중 오류가 발생했습니다.\");",
+			"}"
+		],
+		"description": "POST 요청"
+	},
+
+	"file-comment": {
+		"prefix": "comment",
+		"body": [
+			"",
+			"/**",
+			" * @fileoverview ConfigService 모듈 - 환경 변수를 관리하는 서비스",
+			" * @module ConfigService",
+			" * @description 이 모듈은 dotenv를 사용하여 환경 변수를 로드하고 제공하는 역할을 한다.",
+			" *",
+			" * @author 홍길동",
+			" * @created 2024-03-15",
+			" * @updated 2024-03-15",
+			" * @version 1.0.0",
+			" */"
+		],
+		"description": "파일 설명"
+	},
+
+	"query-runner": {
+		"prefix": "qr",
+		"body": [
+			"    // 상단에 추가: private readonly dataSource: DataSource",
+			"    const qr = this.dataSource.createQueryRunner();",
+			"    await qr.connect();",
+			"    await qr.startTransaction();",
+			"",
+			"    // save 예시",
+			"    try {",
+			"      const result = await qr.manager.save(",
+			"        this.repository.target,",
+			"        entity,",
+			"      );",
+			"      await qr.commitTransaction(); // 트랜잭션 커밋",
+			"",
+			"      return Result.success(result, '쿼리 실행 완료');",
+			"    } catch (err) {",
+			"      await qr.rollbackTransaction();",
+			"      return Result.error(HttpStatus.BAD_REQUEST, '쿼리 실행 실패, 롤백');",
+			"    } finally {",
+			"      await qr.release();",
+			"    }"
+		],
+		"description": "queryRunner"
+	},
+
+	"confirm-alert": {
+		"prefix": "confirm",
+		"body": [
+			"AlertService.warn(\"확인?\", {",
+			"    useConfirmBtn: true,",
+			"    useCancelBtn: true,",
+			"    onConfirm: () => deleteConfirmed(),",
+			"    onCancel: () => console.log(\"취소\"),",
+			"});"
+		],
+		"description": "confirm_alert"
+	},
+
+	"normal-alert": {
+		"prefix": "alert",
+		"body": ["AlertService.error(\"알림\");"],
+		"description": "normal-alert"
+	},
+
+	"divider-comment": {
+		"prefix": "div",
+		"body": [
+			"/*************************** 기타 ***************************/"
+		],
+		"description": "divider-comment"
+	}
+}

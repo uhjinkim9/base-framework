@@ -1,0 +1,46 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.previewContainer {
+	width: 1000px;
+	border-left: $gray3 1px solid;
+	border-right: $gray3 1px solid;
+	padding: 0 3cm;
+	box-sizing: border-box;
+	// overflow-x: auto;
+}
+
+.previewContainer table {
+	border-collapse: collapse;
+	margin: 12px 0;
+	table-layout: fixed; /* 고정 레이아웃으로 높이 안정화 */
+	width: auto;
+}
+
+.previewContainer th,
+.previewContainer td {
+	border: 1px solid #000000;
+	padding: 0 10px;
+	font-size: 14px;
+	position: relative;
+	vertical-align: top;
+	word-wrap: break-word;
+	box-sizing: border-box;
+}
+
+.previewContainer th {
+	background-color: #f2f2f2;
+	font-weight: 600;
+}

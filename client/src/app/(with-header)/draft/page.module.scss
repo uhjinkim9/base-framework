@@ -1,0 +1,10 @@
+@use "@/styles/variables.scss" as *;
+
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); // 2개씩
+	grid-template-rows: repeat(2, 1fr); // 2행
+	gap: 1rem;
+	width: 100%;
+	height: 100%;
+}

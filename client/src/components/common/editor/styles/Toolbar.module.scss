@@ -1,0 +1,57 @@
+@use "@/styles/variables.scss" as *;
+@use "@/styles/common.scss" as *;
+
+.toolbar {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 0.8rem;
+	margin-bottom: 10px;
+
+	span {
+		font-size: 0.8rem;
+		color: $gray5;
+	}
+
+	button {
+		background: none;
+		border: 1px solid #ccc;
+		padding: 4px 6px 3px 6px;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: background 0.2s;
+		font-size: 0.8rem;
+
+		&:hover {
+			background: #eee;
+		}
+	}
+
+	select,
+	input {
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		padding: 4px 6px;
+		font-size: 0.8rem;
+	}
+	select,
+	input[type="color"] {
+		cursor: pointer;
+	}
+	input[type="number"] {
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		padding: 4px 6px;
+		font-size: 0.8rem;
+	}
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+
+.smallGap {
+	gap: 3px;
+}

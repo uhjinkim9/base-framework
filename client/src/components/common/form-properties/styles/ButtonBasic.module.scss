@@ -1,0 +1,86 @@
+@use "@/styles/variables.scss" as *;
+
+.basic.button {
+  color: black;
+  font-size: 0.7rem;
+  font-weight: 400;
+  background: transparent;
+  display: inline-block;
+
+  background-color: white;
+  border-radius: 25px;
+  border-color: transparent;
+  border: 1px solid $u-orange;
+  text-decoration: none;
+  min-width: 5px;
+  transition: all 0.3s;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: $u-orange;
+  }
+  &:hover.onHoverOpaque {
+    opacity: 0.6;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: $gray4;
+    border-color: $gray3;
+
+    &:hover {
+      color: $gray4;
+      border-color: $gray3;
+    }
+  }
+}
+
+.grayBorder.button {
+  color: black;
+  font-size: 0.7rem;
+  font-weight: 400;
+  background: transparent;
+  display: inline-block;
+
+  background-color: white;
+  border-radius: 25px;
+  border-color: transparent;
+  border: 1px solid $gray4;
+  text-decoration: none;
+  min-width: 5px;
+  transition: all 0.3s;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: $u-orange;
+    border-color: $u-orange;
+  }
+  &:hover.onHoverOpaque {
+    opacity: 0.6;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: $gray4;
+    border-color: $gray3;
+
+    &:hover {
+      color: $gray4;
+      border-color: $gray3;
+    }
+  }
+}

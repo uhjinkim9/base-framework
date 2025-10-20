@@ -1,0 +1,10 @@
+.chartWrapper {
+  width: 100%;
+  height: 100%;
+
+  // Recharts 내부 svg 조정
+  :global(.recharts-surface) {
+    transform: translateY(1rem);
+    transform-origin: top;
+  }
+}

@@ -1,0 +1,25 @@
+@use "@/styles/variables" as *;
+@use "@/styles/common" as *;
+
+.lineWrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+	gap: 2rem;
+	padding: 0.5rem 1rem 0.2rem;
+
+	.icons {
+		flex: 1;
+	}
+	.title {
+		flex: 8;
+	}
+	.date {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		gap: 2rem;
+		flex: 4;
+	}
+}
