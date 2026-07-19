@@ -1,5 +1,5 @@
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
+import dayjs = require("dayjs");
+import utc = require("dayjs/plugin/utc");
 dayjs.extend(utc);
 import {HttpException, HttpStatus, Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
