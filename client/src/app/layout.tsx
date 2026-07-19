@@ -2,10 +2,11 @@ import type {Metadata} from "next";
 import "../styles/globals.scss";
 import "../styles/print.scss";
 import BackgroundSetter from "@/components/common/segment/BackgroundSetter";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
-	title: "UCUBERS",
-	description: "THE UCUBE GROUPWARE",
+	title: process.env.NEXT_PUBLIC_APP_NAME ?? "Base App",
+	description: "Reusable monolithic application template",
 	icons: {
 		icon: "/favicon.ico",
 	},
@@ -19,8 +20,10 @@ export default function RootLayout({
 	return (
 		<html lang="ko">
 			<body>
-				<BackgroundSetter />
-				{children}
+				<Providers>
+					<BackgroundSetter />
+					{children}
+				</Providers>
 			</body>
 		</html>
 	);

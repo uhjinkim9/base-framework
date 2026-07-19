@@ -3,7 +3,6 @@ import {Module, forwardRef} from "@nestjs/common";
 
 import {HttpModule} from "@nestjs/axios";
 import {JwtModule} from "../jwt/jwt.module";
-import {RabbitmqModule} from "../messaging/rabbitmq.module";
 
 import {UserAutographEntity} from "./entity/user-autograph.entity";
 import {RoleMenuMapEntity} from "./entity/role-menu-map.entity";
@@ -24,7 +23,6 @@ import {RoleService} from "./service/role.service";
     ]),
     forwardRef(() => JwtModule),
     HttpModule,
-    RabbitmqModule,
   ],
   controllers: [UsersController],
   providers: [UserService, RoleService],
