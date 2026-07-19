@@ -19,7 +19,7 @@
     "build": "npm run build --workspace server && npm run build --workspace client",
     "build:client": "npm run build --workspace client",
     "build:server": "npm run build --workspace server",
-    "install-all": "npm install",
+    "install-all": "concurrently --raw -n CLIENT,SERVER -c cyan,green \"npm install --prefix client\" \"npm install --prefix server\"",
     "start": "concurrently --raw -n CLIENT,SERVER -c cyan,green \"npm run dev:client\" \"npm run dev:server\"",
     "kill-node-ps": "taskkill /F /IM node.exe"
   }
