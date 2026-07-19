@@ -102,6 +102,9 @@ const GroupRowComponent = memo(
   ),
 );
 
+ListHeader.displayName = "ListHeader";
+GroupRowComponent.displayName = "GroupRowComponent";
+
 export default function AdminAttendanceUser() {
   // 그룹 관리 상태
   const [policyGroups, setPolicyGroups] = useState<EmpPolicyGroupType[] | null>(

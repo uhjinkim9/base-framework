@@ -6,7 +6,7 @@ import {useBoardContext} from "@/context/BoardContext";
 import {requestPost} from "@/util/api/api-service";
 import {isNotEmpty} from "@/util/validators/check-empty";
 
-import {SelectOptionType} from "@/components/common/form-properties/types/common.type";
+import {SelectOptionType} from "@/types/common.type";
 import {SideBarMenuType} from "@/types/menu.type";
 
 import SelectBoxBasic from "@/components/common/form-properties/SelectBoxBasic";

@@ -5,7 +5,6 @@ import {requestPost} from "@/util/api/api-service";
 import {LocalStorage} from "@/util/common/storage";
 
 import {UserErpType} from "@/types/user.type";
-import AlertService from "@/services/alert.service";
 
 // 유저 컨텍스트 생성
 const UserContext = createContext<{
@@ -27,9 +26,14 @@ const UserContext = createContext<{
 });
 
 async function getAllUserErpInfo(): Promise<UserErpType[]> {
-  const res = await requestPost("/mail/getContacts");
+  const res = await requestPost("/auth/getUsers", {});
   if (res.statusCode === 200) {
-    return res.data;
+    return res.data.map((user: {userId: string; userNm: string; email?: string}) => ({
+      userId: user.userId,
+      empNo: user.userId,
+      korNm: user.userNm,
+      email: user.email,
+    }));
   } else {
     return [];
   }

@@ -1,4 +1,3 @@
-import {sizeHeight} from "@mui/system";
 import styles from "./styles/profileImage.module.scss";
 
 interface ProfileImageProps {

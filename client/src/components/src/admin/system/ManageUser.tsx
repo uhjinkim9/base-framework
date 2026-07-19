@@ -102,6 +102,9 @@ const ListLine = memo(
   ),
 );
 
+ListHeader.displayName = "ListHeader";
+ListLine.displayName = "ListLine";
+
 export default function ManageUser() {
   // 메뉴
   const {menuData, refreshMenu, filterFirstNodes, filterSecondNodes} =
@@ -380,14 +383,14 @@ export default function ManageUser() {
         <h3 className={styles.mainText}>사용자 관리</h3>
         <Tabs
           tabs={[
-            <span className={styles.label}>사용자 생성</span>,
-            <span className={styles.label}>메일함 관리</span>,
+            <span key="create-user" className={styles.label}>사용자 생성</span>,
+            <span key="manage-account" className={styles.label}>계정 관리</span>,
           ]}
           contents={[
-            <>
+            <div key="create-user-content">
               <p className={styles.subTextRed}>사용자 ㅇ</p>
-            </>,
-            <>아직 구현 전</>,
+            </div>,
+            <div key="manage-account-content">아직 구현 전</div>,
           ]}
         />
 

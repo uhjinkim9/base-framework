@@ -7,8 +7,6 @@ import ManageUser from "@/components/src/admin/system/ManageUser";
 import AdminRole from "@/components/src/admin/AdminRole";
 import AdminAssignRole from "@/components/src/admin/AdminAssignRole";
 import AdminBoard from "@/components/src/admin/admin-sub/AdminBoard";
-import AdminProof from "@/components/src/admin/admin-sub/AdminProof";
-import AddForm from "@/components/src/admin/admin-sub/AddForm";
 import AdminAttendancePolicy from "@/components/src/admin/admin-sub/AdminAttendancePolicy";
 import AdminAttendanceUser from "@/components/src/admin/admin-sub/AdminAttendanceUser";
 import AdminAttendanceEdit from "@/components/src/admin/admin-sub/AdminAttendanceEdit";
@@ -24,8 +22,6 @@ export default function AdminLeafPage() {
     AdminRole,
     AdminAssignRole,
     AdminBoard,
-    AdminProof,
-    AddForm,
     AdminAttendancePolicy,
     AdminAttendanceUser,
     AdminAttendanceEdit,

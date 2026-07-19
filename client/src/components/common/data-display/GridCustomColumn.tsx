@@ -93,7 +93,6 @@ export const GridSelect = (
 				codeClass={options?.codeClass}
 				defaultLabel={options?.defaultLabel}
 				readonly={options?.readonly}
-				componentType="basic"
 			/>
 		);
 	},

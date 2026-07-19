@@ -13,6 +13,7 @@ import {disconnectSocket} from "@/util/common/socket";
 
 export default function Header() {
   const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
 
@@ -27,7 +28,8 @@ export default function Header() {
     }
     CookieStorage.clearAll();
     disconnectSocket();
-    router.push("/login");
+    setIsAuthenticated(false);
+    router.push("/");
   }
 
   function onClickMenuBurger() {
@@ -40,9 +42,12 @@ export default function Header() {
   }
 
   function onClickSearch() {
-    router.push("/home/search");
-    // 아직 TODO
+    router.push("/dashboard");
   }
+
+  useEffect(() => {
+    setIsAuthenticated(Boolean(LocalStorage.getAccessToken()));
+  }, []);
 
   useEffect(() => {
     // 메뉴가 열리면 스크롤바 비활성화
@@ -69,46 +74,51 @@ export default function Header() {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.iconWrapper}>
-          <Link href="/home">
-            <img
-              src="/ucube-symbol-color.png"
-              alt="logo"
-              className={styles.symbol}
-            />
-          </Link>
-        </div>
+        <div className={styles.iconWrapper} />
 
-        <Link href="/home">
+        <Link href="/">
           <HeaderText />
         </Link>
 
         <div className={styles.menuWrapper}>
-          <InputSearch
-            name="search"
-            componentType="inHeader"
-            onChange={onChangeSearch}
-            onClickSearch={onClickSearch}
-          />
-          <IconImage
-            iconName="menu_burger"
-            onClick={onClickMenuBurger}
-            className={styles.pointer}
-            size={22}
-            onHoverOpaque
-            alt="메뉴"
-          />
-          <IconImage
-            iconName="logout"
-            onClick={doLogout}
-            className={styles.pointer}
-            size={22}
-            onHoverOpaque
-            alt="로그아웃"
-          />
+          {isAuthenticated ? (
+            <>
+              <InputSearch
+                name="search"
+                componentType="inHeader"
+                onChange={onChangeSearch}
+                onClickSearch={onClickSearch}
+              />
+              <IconImage
+                iconName="menu_burger"
+                onClick={onClickMenuBurger}
+                className={styles.pointer}
+                size={22}
+                onHoverOpaque
+                alt="메뉴"
+              />
+              <IconImage
+                iconName="logout"
+                onClick={doLogout}
+                className={styles.pointer}
+                size={22}
+                onHoverOpaque
+                alt="로그아웃"
+              />
+            </>
+          ) : (
+            <div className={styles.authActions}>
+              <Link className={styles.signupButton} href="/signup">
+                회원가입
+              </Link>
+              <Link className={styles.loginButton} href="/login">
+                로그인
+              </Link>
+            </div>
+          )}
         </div>
       </header>
-      {isMenuVisible && (
+      {isAuthenticated && isMenuVisible && (
         <HeaderMenuBar closeMenu={() => setIsMenuVisible(false)} />
       )}
     </>

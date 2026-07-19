@@ -12,7 +12,6 @@ import {requestPost} from "@/util/api/api-service";
 import {HiOutlineSpeakerWave} from "react-icons/hi2";
 import {GoClock} from "react-icons/go";
 import IconNode from "@/components/common/segment/IconNode";
-import {Icon} from "@react-pdf-viewer/core";
 
 type PrefixType = "poll" | "docs" | "null";
 type StatusColor = "red" | "blue" | "gray" | "green" | "yellow";

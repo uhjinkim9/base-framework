@@ -23,9 +23,14 @@ const MenuContext = createContext<{
 } | null>(null);
 
 async function getMenus(): Promise<MenuType[]> {
-	const res = await requestPost("/menu/getMenus", {isUsed: true});
-	if (isNotEmpty(res.data)) {
-		return await res.data;
+  const res = await requestPost("/menu/getMenus", {isUsed: true});
+  if (isNotEmpty(res.data)) {
+    const removedFeatures = new Set(["docs", "draft", "mail"]);
+    return res.data.filter(
+      (menu: MenuType) =>
+        !removedFeatures.has(menu.menuId) &&
+        !removedFeatures.has(menu.upperNode ?? ""),
+    );
 	}
 	return [];
 }
