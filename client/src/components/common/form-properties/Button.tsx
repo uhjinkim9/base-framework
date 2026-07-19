@@ -34,6 +34,7 @@ interface ButtonComponentProps {
 	children?: any;
 	onHoverOpaque?: boolean;
 	width?: string;
+	disabled?: boolean;
 }
 
 const Button = ({
@@ -44,6 +45,7 @@ const Button = ({
 	children,
 	onHoverOpaque,
 	width,
+	disabled,
 }: ButtonComponentProps) => {
 	return (
 		<button
@@ -53,6 +55,7 @@ const Button = ({
 			}`}
 			onClick={onClick}
 			onMouseEnter={onMouseEnter}
+			disabled={disabled}
 			style={{width: width}}
 		>
 			{children}

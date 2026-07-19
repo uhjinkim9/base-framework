@@ -1,15 +1,11 @@
-"use client";
-
-import clsx from "clsx";
 import styles from "./styles/HeaderText.module.scss";
 
 export default function HeaderText() {
 	return (
-		<>
-			<div className={clsx(styles.title, "headerText")}>
-				<h1 className={styles.colorOrange}>U</h1>
-				<h1 className={styles.colorNavy}>CUBERS</h1>
-			</div>
-		</>
+		<div className={`${styles.title} headerText`}>
+			<h1 className={styles.colorNavy}>
+				{process.env.NEXT_PUBLIC_APP_NAME ?? "Base App"}
+			</h1>
+		</div>
 	);
 }

@@ -12,7 +12,7 @@ import {isEmpty, isNotEmpty} from "@/util/validators/check-empty";
 import {generateUUID} from "@/util/helpers/random-generator";
 import {requestPost} from "@/util/api/api-service";
 import {LocalStorage} from "@/util/common/storage";
-import {connectSocket} from "@/util/common/socket";
+import {useMutation} from "@tanstack/react-query";
 
 type LoginInfoInterface = {
   userId: string;
@@ -30,6 +30,20 @@ export default function Login() {
     rememberId: false,
   });
 
+  const loginMutation = useMutation({
+    mutationFn: () => requestPost("/auth/doLogin", loginInfo),
+    onSuccess: (res) => {
+      if (res.statusCode !== 200) {
+        AlertService.error(res.message || "로그인에 실패했습니다.");
+        return;
+      }
+
+      AlertService.success(res.message);
+      loginCallback(res.data.accessToken, res.data.existingUser.userNm);
+    },
+    onError: () => AlertService.error("로그인 중 오류가 발생했습니다."),
+  });
+
   async function submitLogin() {
     if (isEmpty(loginInfo.userId)) {
       AlertService.warn("아이디를 입력해주세요.");
@@ -39,24 +53,7 @@ export default function Login() {
       AlertService.warn("비밀번호를 입력해주세요.");
       return;
     }
-    const url = "/auth/doLogin";
-
-    try {
-      const res = await requestPost(url, loginInfo);
-      if (res.statusCode === 200) {
-        AlertService.success(res.message);
-        console.log("응답 성공 데이터:", res.data);
-        const data = res.data;
-        loginCallback(data.accessToken, data.existingUser.userNm);
-      } else {
-        AlertService.error(
-          `methodName 실패했습니다: ${res.message || "알 수 없는 오류"}`,
-        );
-      }
-    } catch (error) {
-      console.error("addGroup 에러:", error);
-      AlertService.error("로그인 중 오류가 발생했습니다.");
-    }
+    loginMutation.mutate();
   }
 
   function activeEnter(e: KeyboardEvent) {
@@ -70,8 +67,7 @@ export default function Login() {
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("userNm", userNm);
 
-    connectSocket(accessToken);
-    router.push("/home");
+    router.push("/dashboard");
   }
 
   function onChangeLogin(e: ChangeEvent<HTMLInputElement>): void {
@@ -95,7 +91,7 @@ export default function Login() {
           userId: userId,
           deviceId: deviceId,
         });
-        if (verified) router.push("/home");
+        if (verified) router.push("/dashboard");
       } catch (err) {
         console.log("Token verification failed:", err);
       }
@@ -144,14 +140,14 @@ export default function Login() {
       <div className={styles.page}>
         <main className={styles.main}>
           <div className={styles.title}>
-            <h2 className={styles.welcome}>Welcome</h2>
+            <h2 className={styles.welcome}>Welcome back</h2>
             <hr className={styles.line}></hr>
           </div>
           <HeaderText />
 
           <Input
             type="text"
-            label="ID"
+              label="User ID"
             name="userId"
             value={loginInfo.userId}
             componentType="underlined"
@@ -160,7 +156,7 @@ export default function Login() {
           />
           <Input
             type="password"
-            label="PW"
+              label="Password"
             name="userPw"
             value={loginInfo.userPw}
             componentType="underlined"
@@ -176,10 +172,10 @@ export default function Login() {
               componentType="orange"
               onChange={onChangeLogin}
             >
-              ID 저장
+              Remember me
             </CheckBox>
             <Button name="findPw" componentType="text">
-              PW 찾기
+              Reset password
             </Button>
           </div>
 
@@ -188,14 +184,12 @@ export default function Login() {
               name="login"
               componentType="primaryFirst"
               onClick={submitLogin}
+              disabled={loginMutation.isPending}
             >
-              로그인
+              {loginMutation.isPending ? "로그인 중..." : "로그인"}
             </Button>
           </div>
         </main>
-      </div>
-      <div className={styles.background}>
-        <img src="/ucube_transparent.png" className={styles.logoImage} />
       </div>
     </>
   );

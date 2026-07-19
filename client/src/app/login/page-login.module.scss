@@ -1,7 +1,5 @@
 @use "@/styles/variables.scss" as *;
 
-// 템플릿을 수정한 거라 불필요한 값 확인하고 지우는 것 잊지 말기!
-
 .page {
 	display: grid;
 	grid-template-rows: 20px 1fr 20px;
@@ -40,7 +38,7 @@
 	border: none;
 }
 
-// 아이디 저장, PW 찾기
+// 로그인 보조 액션
 .subsidiary {
 	display: flex;
 	flex-direction: row;
@@ -55,36 +53,6 @@
 	flex-direction: row;
 	justify-content: center;
 	width: 100%;
-}
-
-// 배경 유큐브 로고
-.background {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	width: auto;
-	height: auto;
-	z-index: -1;
-}
-
-.logoImage {
-	width: 600;
-	height: auto;
-}
-
-@media (max-width: 768px) {
-	.background {
-		position: absolute;
-		right: 10px;
-		bottom: 10px;
-		width: auto;
-		height: auto;
-		z-index: -1;
-	}
-
-	.background img {
-		width: 200px; // 모바일에서는 크기 축소
-	}
 }
 
 @media (max-width: 600px) {

@@ -8,7 +8,6 @@ import {
 import {plainToInstance} from "class-transformer";
 import {InjectRepository} from "@nestjs/typeorm";
 import {In, Repository} from "typeorm";
-import {ConfigService} from "@nestjs/config";
 import {partialDto} from "src/common/util/partial-dto";
 import {Result} from "src/common/util/result";
 import {UserReqDto} from "../dto/req/user.req-dto";
@@ -18,9 +17,7 @@ import {LoginInfoReqDto} from "../dto/req/login-info.req-dto";
 
 import password from "src/helpers/password";
 import {JWTService} from "src/modules/jwt/service/jwt.service";
-import {RabbitmqPublisherService} from "src/modules/messaging/rabbitmq-publisher.service";
 import {Tokens} from "src/modules/jwt/types/tokens.type";
-import {NotificationEventPayload} from "src/modules/messaging/type/notification-payload.type";
 
 @Injectable()
 export class UserService {
@@ -31,9 +28,6 @@ export class UserService {
     @Inject(forwardRef(() => JWTService)) // 서비스 순환 참조 시 주입법
     private readonly jwtService: JWTService,
 
-    private readonly pubSvc: RabbitmqPublisherService,
-
-    private readonly configService: ConfigService,
   ) {}
   private readonly logger = new Logger(UserService.name);
 
@@ -85,32 +79,6 @@ export class UserService {
         userAgent,
       );
     }
-
-    // 알림 이벤트 발행
-    const notificationExchange = this.configService.get<string>(
-      "NOTIFICATION_EXCHANGE", // 알림 서비스가 듣는 Exchange 이름
-      "notification.exchange",
-    );
-    this.logger.log(`알림 이벤트 발행 완료: ${notificationExchange}`);
-
-    const publishPayload: NotificationEventPayload = {
-      event: "login", // 알림 서비스가 인지할 이벤트 타입 (클라이언트에 emit될 이벤트명도 됨)
-      userId: userId, // 알림을 받을 특정 유저 ID (개별 알림)
-      title: "로그인 성공",
-      body: `${user.userNm || userId}님이 로그인했습니다.`, // user.userNm을 사용하면 더 사용자 친화적
-      data: {url: "/home", loginIp: loginIp, deviceId: deviceId}, // 클라이언트에 추가로 보낼 데이터
-    };
-
-    await this.pubSvc.publish(
-      // 알림 서비스의 RabbitmqConsumer가 듣는 라우팅 키 ("notification.external" 패턴에 매칭됨)
-      "notification.external.event",
-      publishPayload,
-      // 알림 서비스의 exchange로 발행
-      notificationExchange,
-    );
-    this.logger.log(
-      `[${userId}] 로그인 성공 알림 이벤트 RabbitMQ에 발행 - Payload: ${JSON.stringify(publishPayload)}`,
-    );
 
     // 발급된 토큰 반환
     const res = {

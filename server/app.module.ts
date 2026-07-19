@@ -13,6 +13,7 @@ import {MenuModule} from "modules/menu/menu.module";
 import {PlansModule} from "modules/plan/plans.module";
 import {TaskModule} from "modules/task/task.module";
 import {UsersModule} from "modules/users/users.module";
+import {AppController} from "./app.controller";
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import {UsersModule} from "modules/users/users.module";
     TaskModule,
     UsersModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {
   configure(consumer: any) {
