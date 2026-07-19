@@ -24,7 +24,7 @@ import {Repository} from "typeorm";
 import {TokenPayloadInfo, Tokens} from "../types/tokens.type";
 import {TokenReqDto} from "../dto/req/token.req-dto";
 import {TokenEntity} from "../entity/token.entity";
-import {UserService} from "src/modules/users/service/user.service";
+import {UserService} from "src/modules/auth/users/service/user.service";
 import {RequestInfoInterceptor} from "src/common/interceptor/request-info.interceptor";
 
 @Injectable()
