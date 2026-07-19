@@ -8,7 +8,6 @@ import {DatabaseModule} from "src/config/orm.config";
 import {AdminModule} from "src/modules/admin/admin.module";
 import {AuthModule} from "src/modules/auth/auth.module";
 import {BoardModule} from "src/modules/board/board.module";
-import {DocsModule} from "src/modules/docs/docs.module";
 import {FileModule} from "src/modules/file/file.module";
 import {MenuModule} from "src/modules/menu/menu.module";
 import {PlansModule} from "src/modules/plan/plans.module";
@@ -20,7 +19,7 @@ import {AppController} from "./app.controller";
     // 환경 설정
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV || "development"}`,
+      envFilePath: `config/env/.env.${process.env.NODE_ENV || "development"}`,
     }),
 
     ScheduleModule.forRoot(),
@@ -30,7 +29,6 @@ import {AppController} from "./app.controller";
     AdminModule,
     AuthModule,
     BoardModule,
-    DocsModule,
     FileModule,
     MenuModule,
     PlansModule,

@@ -74,9 +74,9 @@ export default function FileDrop({
 			});
 
 			// URL 파라미터로 moduleNm 전달 (FormData에서 제거)
-			const module = normalFiles[0]?.moduleNm || "default";
+			const moduleName = normalFiles[0]?.moduleNm || "default";
 
-			const res = await filePost(`/file/uploadFiles/${module}`, formData);
+			const res = await filePost(`/file/uploadFiles/${moduleName}`, formData);
 			if (res.statusCode === 200) {
 				console.log("응답 성공 메시지:", res.message);
 				console.log("응답 성공 데이터:", res.data.uploaded);

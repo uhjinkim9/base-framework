@@ -62,7 +62,6 @@ export function redirectToFirstLeafMenu(
 
   return linkToLeafMenu;
 }
-
 /**
  * 메뉴 데이터 로딩 감지 및 자동 리다이렉트 훅
  * URL 1번째 slug 있으면 3번째 slug까지 자동 완성
@@ -85,7 +84,6 @@ export function useMenuRedirect(
     }
   }, [menuData, subMenu, router]);
 }
-
 /*************************** 전자결재, 제증명과 같은 경우 사용 ***************************/
 
 /**
@@ -232,75 +230,4 @@ export function redirectToDeepestMenu(
   }
 
   return "";
-}
-
-/*************************** 전자결재 ***************************/
-// TODO: 이 부분 나중에 리팩토링해야 할 듯
-
-/**
- * Draft 메뉴 데이터 로딩 감지 및 자동 리다이렉트 훅
- * @param draftMenus - Draft 메뉴 배열 데이터
- * @param headerMenuId - 헤더 메뉴 ID ("draft-dashboard", "approval", "document")
- * @param router - Next.js router 객체
- */
-export function useDraftMenuRedirect(
-  draftMenus: SideBarMenuType[],
-  headerMenuId: string,
-  router: ReturnType<typeof useRouter>,
-) {
-  useEffect(() => {
-    // 실제 데이터가 있을 때만 리다이렉트 실행
-    if (draftMenus && Array.isArray(draftMenus) && draftMenus.length > 0) {
-      redirectToFirstDraftLeafMenu(draftMenus, headerMenuId, router);
-    }
-  }, [draftMenus, headerMenuId, router]);
-}
-
-export function redirectToFirstDraftLeafMenu(
-  draftMenus: SideBarMenuType[],
-  headerMenuId: string, // "draft-dashboard", "approval", "document"
-  router: ReturnType<typeof useRouter>,
-): string {
-  // 실제 데이터가 없으면 빈 문자열 반환
-  if (!draftMenus || !Array.isArray(draftMenus) || draftMenus.length === 0) {
-    return "";
-  }
-
-  // headerMenuId와 같은 이름의 폴더 메뉴 찾기
-  const folderMenu = draftMenus.find(
-    (menu) =>
-      menu.nodeLevel === 1 && menu.menuNm === getMenuDisplayName(headerMenuId), // "approval" → "결재문서"
-  );
-
-  if (headerMenuId === "draft-dashboard") {
-    // draft-dashboard는 자기 자신으로 이동
-    const targetMenu = draftMenus.find(
-      (menu) => menu.menuId === "draft-dashboard" && menu.nodeLevel === 2,
-    );
-    if (!targetMenu?.menuId) return "";
-    const link = `/community/draft/${headerMenuId}/${targetMenu.menuId}`;
-    router.push(link);
-    return link;
-  } else {
-    // approval, document는 첫 번째 자식으로 이동
-    const firstChild = folderMenu?.children?.find(
-      (child) => child.seqNum === 1 && child.isUsed,
-    );
-    if (!firstChild?.menuId) return "";
-    const link = `/community/draft/${headerMenuId}/${firstChild.menuId}`;
-    router.push(link);
-    return link;
-  }
-}
-
-/**
- * 메뉴 ID를 한글 표시명으로 변환
- */
-function getMenuDisplayName(menuId: string): string {
-  const menuMapping: Record<string, string> = {
-    "draft-dashboard": "대시보드",
-    approval: "결재문서",
-    document: "내문서",
-  };
-  return menuMapping[menuId] || menuId;
 }

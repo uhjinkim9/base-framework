@@ -1,6 +1,5 @@
 import type {Metadata} from "next";
 import "../styles/globals.scss";
-import "../styles/print.scss";
 import BackgroundSetter from "@/components/common/segment/BackgroundSetter";
 import Providers from "./providers";
 

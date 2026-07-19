@@ -3,7 +3,6 @@ import {LocalStorage} from "@/util/common/storage";
 
 import {MenuType} from "@/types/menu.type";
 import {RoleMenuMapType, RoleType} from "@/types/user-role.type";
-import {FormType} from "../../docs/etc/docs.type";
 import {CheckedRowsType} from "./admin-type";
 
 export const newMenuState = (
@@ -24,7 +23,6 @@ export const newMenuState = (
     seqNum: "1",
   };
 };
-
 export const newRoleState = (): RoleType => {
   const id = generateEightDigitNum();
   const userId = LocalStorage.getUserId();
@@ -39,7 +37,6 @@ export const newRoleState = (): RoleType => {
     isUsed: true,
   };
 };
-
 export const newRoleMenuState = (): RoleMenuMapType => {
   const userId = LocalStorage.getUserId();
 
@@ -61,22 +58,4 @@ export const initialCheckedRowsType: CheckedRowsType = {
   lowerCheckedRow: new Set<string>(),
   checkedReading: new Set<string>(),
   checkedWriting: new Set<string>(),
-};
-
-export const newFormState = (): FormType => {
-  const userId = LocalStorage.getUserId();
-
-  return {
-    formId: "",
-    formNm: "",
-    explanation: "",
-    templateHtml: "",
-    managerId: "",
-    stampId: "",
-    approvalRequired: true,
-    isUsed: true,
-    seqNum: 1,
-    creatorId: userId,
-    updaterId: userId,
-  };
 };

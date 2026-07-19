@@ -101,6 +101,9 @@ const ListLine = memo(
   ),
 );
 
+ListHeader.displayName = "ListHeader";
+ListLine.displayName = "ListLine";
+
 export default function ManageHeaderMenu() {
   // 메뉴
   const {menuData, refreshMenu, filterFirstNodes, filterSecondNodes} =

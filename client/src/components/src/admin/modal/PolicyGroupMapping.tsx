@@ -9,7 +9,7 @@ import clsx from "clsx";
 import AlertService from "@/services/alert.service";
 import CheckBox from "@/components/common/form-properties/CheckBox";
 
-const ListHeader = ({}: {}) => (
+const ListHeader = () => (
   <div className={clsx(styles.lineWrapper, styles.headerRow)}>
     <div className={styles.groupNm}>그룹명</div>
     <div className={styles.mapping}>선택</div>

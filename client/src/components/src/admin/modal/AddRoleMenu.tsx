@@ -3,7 +3,7 @@ import styles from "../styles/AddMenu.module.scss";
 import {ChangeEvent, useEffect, useState} from "react";
 
 import {useMenuData} from "@/context/MenuContext";
-import {SelectOptionType} from "@/components/common/form-properties/types/common.type";
+import {SelectOptionType} from "@/types/common.type";
 import {RoleMenuMapType} from "@/types/user-role.type";
 import {MenuType} from "@/types/menu.type";
 

@@ -1,4 +1,3 @@
-import {Result} from "./../../../../server/menu/src/common/result";
 /**
  * @description 값이 비어있지 않은지 확인
  * 숫자나 boolean 등은 기본적으로 비어있지 않다고 봄

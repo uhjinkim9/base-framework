@@ -27,6 +27,34 @@ $header-side-padding: 100px;
 	flex: 1;
 }
 
+.authActions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.signupButton,
+.loginButton {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 38px;
+	padding: 0 16px;
+	border-radius: 7px;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.signupButton {
+	border: 1px solid #d0d5dd;
+	background: white;
+}
+
+.loginButton {
+	color: white !important;
+	background: #101828;
+}
+
 .menuWrapper {
 	gap: 2rem;
 	justify-content: flex-end;
@@ -39,7 +67,7 @@ $header-side-padding: 100px;
 }
 
 /* 반응형 */
-@media (max-width: 600) {
+@media (max-width: 600px) {
 	$header-side-padding: 16px;
 
 	.header {

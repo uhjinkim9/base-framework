@@ -6,7 +6,7 @@ import SubTitle from "@/components/common/segment/SubTitle";
 import Divider from "@/components/common/segment/Divider";
 
 import {responseTypeMap} from "./QuestionNodes";
-import {PollType} from "@/components/src/poll/etc/poll.type";
+import {PollType} from "@/types/poll.type";
 
 export default function PreviewPoll({poll}: {poll: PollType}) {
 	const randomIdRef = useRef<number>(0);

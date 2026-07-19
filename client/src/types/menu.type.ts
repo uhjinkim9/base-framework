@@ -5,12 +5,15 @@ export type MenuType = {
   menuNm: string;
   nodeLevel: number;
   upperNode?: string;
+  memo?: string;
   isUsed: boolean;
   isChangeable: boolean; // 메뉴 ID 변경 가능 여부
   seqNum: string;
   createdAt?: string;
   updatedAt?: string;
 };
+
+export type NodeLevelType = "upper" | "lower";
 
 export type SideBarMenuType = {
   menuIdx?: number;

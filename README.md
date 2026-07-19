@@ -28,9 +28,13 @@ server/src
 
 게시판 모듈은 `/board` 아래에 게시판, 게시글, 댓글 API를 제공합니다. 프론트엔드의 기존 action-style API 호출은 후속 단계에서 이 REST API와 React Query hook으로 교체합니다.
 
+루트 `/`는 인증 없이 접근 가능한 공개 홈입니다. 비로그인 사용자는 헤더에서 회원가입과 로그인 버튼을 보고, 로그인 사용자는 검색·메뉴·로그아웃 도구를 볼 수 있습니다.
+
+기존 그룹웨어 전용 `docs`, `draft`, `mail` 프론트엔드 기능은 템플릿 범위에서 제거되었습니다. 메뉴 응답에 해당 ID가 남아 있어도 클라이언트에서 노출하지 않습니다.
+
 ## 시작하기
 
-1. `server/.env.example`을 `server/.env.development`로 복사합니다.
+1. `server/config/env/.env.example`을 `server/config/env/.env.development`로 복사합니다.
 2. `client/.env.example`을 `client/.env.local`로 복사합니다.
 3. PostgreSQL 데이터베이스와 RSA JWT 개인 키 `server/keys/private.pem`을 준비합니다.
 4. 루트에서 `npm install` 후 `npm start`를 실행합니다.

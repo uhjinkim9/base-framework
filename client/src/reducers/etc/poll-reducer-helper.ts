@@ -3,7 +3,7 @@ import {
 	QuestionType,
 	SelectionType,
 	RespondentType,
-} from "@/components/src/poll/etc/poll.type";
+} from "@/types/poll.type";
 import {isNotEmpty} from "@/util/validators/check-empty";
 import {isEmpty} from "lodash";
 

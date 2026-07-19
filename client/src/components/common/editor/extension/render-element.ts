@@ -15,12 +15,11 @@ const defaultComponent = (elementType: string, props: any) => {
 	const dataId = props["data-id"];
 	return createElement("span", {
 		key: elementType, // "check"
-		children: elementType,
 		"data-generated-element": "true",
 		"data-element-type": elementType,
 		"data-id": dataId,
 		value: dataId,
-	});
+	}, elementType);
 };
 
 // React 컴포넌트로 노드 렌더링
