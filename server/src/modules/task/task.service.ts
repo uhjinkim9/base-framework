@@ -10,7 +10,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {plainToInstance} from "class-transformer";
 import {DataSource, Repository} from "typeorm";
 
-import {Result} from "common/util/result";
+import {Result} from "src/common/util/result";
 
 @Injectable()
 export class TaskService {

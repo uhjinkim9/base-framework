@@ -16,8 +16,8 @@ import {UserEntity} from "../entity/user.entity";
 import {LoginInfoReqDto} from "../dto/req/login-info.req-dto";
 
 import password from "src/helpers/password";
-import {JWTService} from "src/modules/jwt/service/jwt.service";
-import {Tokens} from "src/modules/jwt/types/tokens.type";
+import {JWTService} from "src/modules/auth/jwt/service/jwt.service";
+import {Tokens} from "src/modules/auth/jwt/types/tokens.type";
 
 @Injectable()
 export class UserService {
